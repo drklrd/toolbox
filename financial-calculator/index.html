@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>FinCalc Pro — Premium Financial Calculators</title>
+<meta name="description" content="76 professional-grade financial calculators. TVM, loans, investments, retirement, stocks & more. Free, premium tools.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   FINCALC PRO — Premium Dark-Themed Design System
+   ============================================================ */
+:root {
+  --bg-deepest: #06090f;
+  --bg-deep: #0a0f18;
+  --bg-base: #0f1729;
+  --bg-elevated: #151d2e;
+  --bg-card: #192237;
+  --bg-card-hover: #1e2940;
+  --bg-input: #0d1420;
+  --bg-glass: rgba(25, 34, 55, 0.7);
+
+  --border-subtle: rgba(255,255,255,0.05);
+  --border-card: rgba(255,255,255,0.08);
+  --border-input: rgba(255,255,255,0.10);
+  --border-focus: rgba(99, 150, 255, 0.5);
+  --border-accent: rgba(99, 150, 255, 0.25);
+
+  --text-primary: #eef2f8;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #5f6d80;
+  --text-accent: #8cb4ff;
+
+  --accent-1: #6396ff;
+  --accent-2: #5b8af0;
+  --accent-3: #7c5cf0;
+  --accent-4: #4dd4c8;
+  --accent-glow: rgba(99, 150, 255, 0.3);
+
+  --gradient-hero: linear-gradient(135deg, #6396ff 0%, #7c5cf0 30%, #4dd4c8 70%, #6396ff 100%);
+  --gradient-card: linear-gradient(145deg, rgba(99,150,255,0.08) 0%, rgba(124,92,240,0.06) 100%);
+  --gradient-btn: linear-gradient(135deg, #6396ff, #5b8af0);
+  --gradient-result: linear-gradient(135deg, rgba(99,150,255,0.12) 0%, rgba(124,92,240,0.08) 100%);
+  --result-item-bg: rgba(255,255,255,0.03);
+  --result-item-border: rgba(255,255,255,0.04);
+
+  --success: #34d399;
+  --warning: #fbbf24;
+  --error: #f87171;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.15);
+  --shadow-card-hover: 0 2px 6px rgba(0,0,0,0.4), 0 16px 48px rgba(0,0,0,0.25), 0 0 0 1px var(--border-accent);
+  --shadow-glow: 0 0 40px var(--accent-glow);
+  --shadow-btn: 0 4px 16px rgba(99, 150, 255, 0.3);
+
+  --transition-fast: 180ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  --transition-smooth: 320ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Light theme override — user toggle */
+[data-theme="light"] {
+  --bg-deepest: #f0f4f8;
+  --bg-deep: #f4f7fb;
+  --bg-base: #f8fafc;
+  --bg-elevated: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafd;
+  --bg-input: #ffffff;
+  --bg-glass: rgba(255,255,255,0.85);
+
+  --border-subtle: rgba(0,0,0,0.04);
+  --border-card: rgba(0,0,0,0.07);
+  --border-input: rgba(0,0,0,0.12);
+  --border-focus: rgba(59, 130, 246, 0.5);
+  --border-accent: rgba(59, 130, 246, 0.2);
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #94a3b8;
+  --text-accent: #2563eb;
+
+  --gradient-result: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%);
+  --result-item-bg: rgba(0,0,0,0.02);
+  --result-item-border: rgba(0,0,0,0.04);
+
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
+  --shadow-card-hover: 0 2px 8px rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.06), 0 0 0 1px rgba(59,130,246,0.2);
+}
+
+/* Reset */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  background:var(--bg-deepest);color:var(--text-primary);
+  line-height:1.6;min-height:100vh;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+input,select,button,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+a{color:inherit;text-decoration:none}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.2)}
+
+/* Background ambient */
+.bg-ambient{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bg-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.07;animation:orbFloat 20s ease-in-out infinite}
+.bg-orb:nth-child(1){width:600px;height:600px;background:#6396ff;top:-200px;left:-150px;animation-delay:0s}
+.bg-orb:nth-child(2){width:500px;height:500px;background:#7c5cf0;top:50%;right:-200px;animation-delay:-7s}
+.bg-orb:nth-child(3){width:400px;height:400px;background:#4dd4c8;bottom:-150px;left:40%;animation-delay:-14s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(40px,-30px) scale(1.05)}50%{transform:translate(-20px,20px) scale(0.95)}75%{transform:translate(-30px,-20px) scale(1.02)}}
+
+/* ============================================================
+   LAYOUT — App Shell
+   ============================================================ */
+.app-shell{position:relative;z-index:1;min-height:100vh}
+
+/* Header */
+.app-header{
+  position:sticky;top:0;z-index:100;
+  background:var(--bg-glass);backdrop-filter:blur(24px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  border-bottom:1px solid var(--border-subtle);
+  padding:0 24px;height:60px;display:flex;align-items:center;gap:16px;
+}
+.header-brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-0.3px;color:var(--text-primary)}
+.header-logo{
+  width:34px;height:34px;border-radius:10px;
+  background:var(--gradient-hero);
+  display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;
+  box-shadow:0 2px 8px rgba(99,150,255,0.3);
+}
+.header-spacer{flex:1}
+.header-btn{
+  width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  color:var(--text-secondary);font-size:18px;transition:all var(--transition-fast);
+  border:1px solid var(--border-subtle);
+}
+.header-btn:hover{background:var(--bg-elevated);color:var(--text-primary);border-color:var(--border-card)}
+.header-btn.theme-btn{font-size:16px}
+.header-search-wrapper{position:relative;max-width:380px;width:100%}
+.header-search-wrapper input{
+  width:100%;padding:10px 14px 10px 40px;
+  background:var(--bg-input);border:1px solid var(--border-input);
+  border-radius:12px;color:var(--text-primary);font-size:13px;outline:none;
+  transition:all var(--transition-fast);
+}
+.header-search-wrapper input::placeholder{color:var(--text-tertiary)}
+.header-search-wrapper input:focus{border-color:var(--border-focus);box-shadow:0 0 0 3px rgba(99,150,255,0.1)}
+.header-search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:15px;opacity:0.5;pointer-events:none}
+
+/* Main Content */
+.app-content{padding:0 24px 60px;max-width:1280px;margin:0 auto}
+
+/* ============================================================
+   HOME VIEW — Card Grid
+   ============================================================ */
+.home-view{display:block}
+.calc-view{display:none}
+.calc-view.active{display:block;animation:viewEnter var(--transition-smooth) ease}
+@keyframes viewEnter{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* Hero */
+.hero{padding:48px 0 32px;text-align:center}
+.hero h1{font-size:clamp(32px,5vw,52px);font-weight:900;letter-spacing:-1.5px;line-height:1.1;margin-bottom:12px}
+.hero h1 .gradient-text{background:var(--gradient-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:15px;color:var(--text-secondary);max-width:500px;margin:0 auto 28px;line-height:1.7}
+.hero-stats{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat .num{font-size:28px;font-weight:800;color:var(--text-primary);letter-spacing:-0.5px}
+.hero-stat .lbl{font-size:11px;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.8px;margin-top:2px}
+
+/* Category Section */
+.cat-section{margin-bottom:40px}
+.cat-section-header{
+  display:flex;align-items:center;gap:12px;margin-bottom:18px;
+  padding-bottom:14px;border-bottom:1px solid var(--border-subtle);
+}
+.cat-icon-badge{
+  width:40px;height:40px;border-radius:12px;
+  background:var(--bg-card);border:1px solid var(--border-card);
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+  flex-shrink:0;
+}
+.cat-section-header h2{font-size:18px;font-weight:700;letter-spacing:-0.2px;color:var(--text-primary)}
+.cat-count{font-size:12px;color:var(--text-tertiary);font-weight:500;margin-left:auto}
+
+/* Calculator Card Grid */
+.calc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+
+/* Calculator Card */
+.calc-card{
+  background:var(--bg-card);border:1px solid var(--border-card);
+  border-radius:var(--radius-md);padding:18px 20px;
+  cursor:pointer;transition:all var(--transition-fast);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;gap:6px;
+}
+.calc-card::before{
+  content:'';position:absolute;inset:0;
+  background:var(--gradient-card);opacity:0;transition:opacity var(--transition-fast);
+}
+.calc-card:hover{
+  background:var(--bg-card-hover);border-color:var(--border-accent);
+  transform:translateY(-2px);box-shadow:var(--shadow-card-hover);
+}
+.calc-card:hover::before{opacity:1}
+.calc-card:active{transform:scale(0.985)}
+.calc-card-icon{font-size:22px;position:relative;z-index:1;line-height:1}
+.calc-card-name{font-size:13.5px;font-weight:600;color:var(--text-primary);position:relative;z-index:1;letter-spacing:-0.1px;line-height:1.3}
+.calc-card-desc{font-size:12px;color:var(--text-tertiary);position:relative;z-index:1;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.calc-card .card-indicator{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--text-tertiary);opacity:0;transition:all var(--transition-fast)}
+.calc-card:hover .card-indicator{opacity:1;color:var(--text-accent);right:10px}
+
+/* Category Card (landing) */
+.cat-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:40px}
+.cat-card{
+  background:var(--bg-card);border:1px solid var(--border-card);
+  border-radius:var(--radius-lg);padding:28px;cursor:pointer;
+  transition:all var(--transition-fast);position:relative;overflow:hidden;
+  display:flex;flex-direction:column;gap:12px;
+}
+.cat-card::after{
+  content:'';position:absolute;top:0;right:0;width:120px;height:120px;
+  background:var(--gradient-hero);opacity:0.03;border-radius:0 0 0 120px;
+  transition:all var(--transition-fast);
+}
+.cat-card:hover{background:var(--bg-card-hover);border-color:var(--border-accent);transform:translateY(-3px);box-shadow:var(--shadow-card-hover)}
+.cat-card:hover::after{opacity:0.08;width:180px;height:180px}
+.cat-card:active{transform:scale(0.985)}
+.cat-card-icon{font-size:40px;line-height:1;position:relative;z-index:1}
+.cat-card-name{font-size:19px;font-weight:700;color:var(--text-primary);position:relative;z-index:1;letter-spacing:-0.3px}
+.cat-card-count{font-size:12px;color:var(--text-tertiary);font-weight:500;position:relative;z-index:1}
+.cat-card-arrow{position:absolute;bottom:24px;right:28px;font-size:18px;color:var(--text-tertiary);transition:all var(--transition-fast);z-index:1}
+.cat-card:hover .cat-card-arrow{color:var(--accent-1);right:20px}
+
+/* Category Detail Header */
+.cat-detail-header{display:flex;align-items:center;gap:14px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border-subtle)}
+.cat-detail-header .cat-icon{font-size:32px}
+.cat-detail-header h2{font-size:22px;font-weight:800;letter-spacing:-0.3px;flex:1}
+.cat-detail-header .cat-count-badge{font-size:12px;color:var(--text-tertiary);background:var(--bg-elevated);padding:6px 12px;border-radius:20px;font-weight:500}
+
+/* Hidden card (search filter) */
+.calc-card.hidden,.cat-card.hidden{display:none}
+
+/* ============================================================
+   CALCULATOR VIEW — Full Screen
+   ============================================================ */
+.calc-view-container{animation:viewEnter var(--transition-smooth) ease}
+
+.calc-view-header{
+  display:flex;align-items:center;gap:14px;margin-bottom:32px;flex-wrap:wrap;
+}
+.btn-back{
+  width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-size:20px;color:var(--text-secondary);border:1px solid var(--border-card);
+  transition:all var(--transition-fast);flex-shrink:0;
+}
+.btn-back:hover{background:var(--bg-card);color:var(--text-primary);border-color:var(--border-input)}
+.calc-view-title{font-size:26px;font-weight:800;letter-spacing:-0.5px;color:var(--text-primary);flex:1;min-width:200px}
+.btn-help{
+  width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:700;color:var(--text-tertiary);border:2px solid var(--border-input);
+  transition:all var(--transition-fast);flex-shrink:0;
+}
+.btn-help:hover{background:var(--accent-1);border-color:var(--accent-1);color:#fff;box-shadow:var(--shadow-glow)}
+
+.calc-view-desc{font-size:14px;color:var(--text-secondary);max-width:600px;line-height:1.7;margin-bottom:24px}
+
+/* Help panel in calc view */
+.help-panel{
+  background:var(--bg-elevated);border:1px solid var(--border-accent);
+  border-radius:var(--radius-md);padding:18px 22px;margin-bottom:20px;
+  display:none;
+}
+.help-panel.open{display:block;animation:viewEnter var(--transition-fast) ease}
+.help-panel h4{font-size:13px;font-weight:700;color:var(--accent-1);margin-bottom:6px}
+.help-panel p{font-size:13px;color:var(--text-secondary);line-height:1.7}
+.help-panel .formula{
+  display:inline-block;margin-top:10px;padding:8px 14px;
+  background:var(--bg-input);border-radius:var(--radius-sm);
+  font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent-1);
+  border:1px solid var(--border-input);
+}
+
+/* Input card */
+.input-card{
+  background:var(--bg-card);border:1px solid var(--border-card);
+  border-radius:var(--radius-lg);padding:24px;margin-bottom:16px;
+}
+.input-card-title{font-size:14px;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:8px;color:var(--text-primary)}
+.input-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.input-group{display:flex;flex-direction:column;gap:5px}
+.input-group label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-tertiary)}
+.input-group input,.input-group select,.input-group textarea{
+  padding:11px 14px;border:1.5px solid var(--border-input);
+  border-radius:var(--radius-sm);font-size:14px;background:var(--bg-input);
+  color:var(--text-primary);outline:none;transition:all var(--transition-fast);
+  font-variant-numeric:tabular-nums;
+}
+.input-group input:focus,.input-group select:focus,.input-group textarea:focus{
+  border-color:var(--border-focus);box-shadow:0 0 0 3px rgba(99,150,255,0.08);
+}
+.input-group input::placeholder{color:var(--text-tertiary)}
+.input-suffix{position:relative}
+.input-suffix input{padding-right:48px;width:100%}
+.input-suffix .suffix{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  font-size:13px;font-weight:600;color:var(--text-tertiary);pointer-events:none;
+}
+
+.btn-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.btn{
+  padding:11px 22px;border-radius:var(--radius-sm);
+  font-size:13px;font-weight:600;letter-spacing:0.2px;
+  transition:all var(--transition-fast);display:inline-flex;align-items:center;gap:7px;
+}
+.btn-primary{background:var(--gradient-btn);color:#fff;box-shadow:var(--shadow-btn)}
+.btn-primary:hover{filter:brightness(1.1);transform:translateY(-1px);box-shadow:0 8px 24px rgba(99,150,255,0.4)}
+.btn-secondary{background:var(--bg-elevated);color:var(--text-primary);border:1px solid var(--border-input)}
+.btn-secondary:hover{background:var(--bg-card-hover);border-color:var(--border-card)}
+.btn-outline{background:transparent;color:var(--accent-1);border:1.5px solid rgba(99,150,255,0.3)}
+.btn-outline:hover{background:rgba(99,150,255,0.06);border-color:var(--accent-1)}
+
+/* Results */
+.results-panel{
+  background:var(--gradient-result);border:1px solid var(--border-accent);
+  border-radius:var(--radius-lg);padding:24px;margin-bottom:16px;
+}
+.results-panel h3{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-accent);margin-bottom:16px}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.result-item{
+  background:var(--result-item-bg);border-radius:var(--radius-sm);
+  padding:14px 16px;border:1px solid var(--result-item-border);
+}
+.result-item .label{font-size:10px;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-tertiary);margin-bottom:4px}
+.result-item .value{font-size:21px;font-weight:800;letter-spacing:-0.3px;color:var(--text-primary);font-variant-numeric:tabular-nums}
+.result-item .sub{font-size:11px;color:var(--text-tertiary);margin-top:3px}
+
+/* Summary pills */
+.summary-pills{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.summary-pill{
+  background:var(--bg-card);border:1px solid var(--border-card);
+  border-radius:var(--radius-md);padding:14px 20px;flex:1;min-width:140px;
+}
+.summary-pill .label{font-size:10px;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-tertiary)}
+.summary-pill .value{font-size:20px;font-weight:800;margin-top:3px}
+
+/* Tables */
+.table-wrap{border-radius:var(--radius-md);border:1px solid var(--border-card);overflow:hidden;margin-top:16px}
+.table-scroll{max-height:400px;overflow-y:auto}
+.table-wrap table{width:100%;border-collapse:collapse;font-size:12px}
+.table-wrap th{background:var(--bg-elevated);padding:11px 14px;text-align:right;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-tertiary);white-space:nowrap;position:sticky;top:0;z-index:1}
+.table-wrap th:first-child{text-align:center}
+.table-wrap td{padding:10px 14px;text-align:right;border-top:1px solid var(--border-subtle);font-variant-numeric:tabular-nums}
+.table-wrap td:first-child{text-align:center;color:var(--text-tertiary)}
+.table-wrap tr:hover td{background:rgba(255,255,255,0.02)}
+
+/* Tab pills */
+.tab-row{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.tab-pill{
+  padding:7px 16px;border-radius:20px;font-size:12px;font-weight:500;
+  background:var(--bg-elevated);color:var(--text-secondary);border:1px solid var(--border-subtle);
+  transition:all var(--transition-fast);cursor:pointer;
+}
+.tab-pill.active{background:var(--gradient-btn);color:#fff;border-color:transparent;box-shadow:var(--shadow-btn)}
+.tab-pill:hover:not(.active){border-color:var(--border-input);color:var(--text-primary)}
+
+/* Toast */
+.toast-bar{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{
+  padding:12px 20px;border-radius:12px;background:var(--bg-card);color:var(--text-primary);
+  font-size:13px;font-weight:500;border:1px solid var(--border-card);
+  box-shadow:var(--shadow-card-hover);animation:slideToast var(--transition-spring) ease;
+  pointer-events:auto;display:flex;align-items:center;gap:10px;max-width:360px;
+  backdrop-filter:blur(12px);
+}
+.toast.error{border-color:rgba(248,113,113,0.3);color:var(--error)}
+.toast.success{border-color:rgba(52,211,153,0.3);color:var(--success)}
+@keyframes slideToast{from{opacity:0;transform:translateX(40px) scale(0.95)}to{opacity:1;transform:translateX(0) scale(1)}}
+
+/* Chart canvas */
+.chart-wrap{height:260px;position:relative}
+.chart-wrap canvas{width:100%;height:100%}
+
+/* Responsive */
+@media(max-width:900px){
+  .app-header{padding:0 16px}
+  .header-search-wrapper{max-width:200px}
+  .app-content{padding:0 16px 40px}
+  .calc-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+  .input-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+  .result-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
+  .hero{padding:32px 0 24px}
+  .hero h1{font-size:28px}
+}
+@media(max-width:600px){
+  .app-header{height:52px;gap:10px;padding:0 12px}
+  .header-brand{font-size:15px}
+  .header-logo{width:28px;height:28px;font-size:13px;border-radius:8px}
+  .currency-select{font-size:10px;padding:4px 6px;max-width:60px}
+  .header-search-wrapper{max-width:120px}
+  .header-search-wrapper input{font-size:12px;padding:8px 10px 8px 32px}
+  .header-search-icon{left:10px;font-size:13px}
+  .app-content{padding:0 10px 32px}
+  .cat-cards-grid{grid-template-columns:1fr;gap:10px}
+  .cat-card{padding:22px}
+  .cat-card-icon{font-size:32px}
+  .cat-card-name{font-size:17px}
+  .calc-grid{grid-template-columns:1fr;gap:8px}
+  .hero{padding:28px 0 20px}
+  .hero h1{font-size:24px}
+  .hero p{font-size:13px}
+  .hero-stats{gap:20px}
+  .hero-stat .num{font-size:22px}
+  .calc-view-title{font-size:20px}
+  .input-grid{grid-template-columns:1fr}
+  .result-grid{grid-template-columns:1fr 1fr}
+  .btn-row{flex-direction:column}
+  .btn{justify-content:center;width:100%}
+  .input-card{padding:16px}
+  .results-panel{padding:16px}
+  .calc-card{padding:14px 16px}
+  .summary-pills{flex-direction:column}
+}
+
+/* Empty state */
+.empty-state{text-align:center;padding:60px 20px;color:var(--text-tertiary)}
+.empty-state .icon{font-size:56px;margin-bottom:14px;opacity:0.3}
+.empty-state h3{font-size:18px;color:var(--text-primary);margin-bottom:6px}
+.empty-state p{font-size:13px;max-width:360px;margin:0 auto;line-height:1.7}
+
+/* Input tooltip */
+.input-label-row{display:flex;align-items:center;gap:5px}
+.tip-dot{
+  width:16px;height:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:700;color:var(--text-tertiary);border:1.5px solid var(--text-tertiary);
+  cursor:help;flex-shrink:0;transition:all var(--transition-fast);line-height:1;
+}
+.tip-dot:hover{color:var(--accent-1);border-color:var(--accent-1);background:rgba(99,150,255,0.1)}
+.tip-tooltip{
+  display:none;position:absolute;z-index:200;
+  background:var(--bg-card);border:1px solid var(--border-accent);
+  border-radius:var(--radius-sm);padding:8px 12px;font-size:11px;color:var(--text-secondary);
+  box-shadow:var(--shadow-card-hover);max-width:240px;line-height:1.5;
+  font-weight:400;text-transform:none;letter-spacing:0;
+  top:100%;left:0;margin-top:4px;
+}
+.tip-dot:hover .tip-tooltip,.tip-dot:focus .tip-tooltip{display:block}
+
+/* Currency select in header */
+.currency-select{
+  padding:6px 10px;border-radius:8px;font-size:12px;font-weight:600;
+  background:var(--bg-input);border:1px solid var(--border-input);
+  color:var(--text-primary);outline:none;cursor:pointer;
+  transition:all var(--transition-fast);
+}
+.currency-select:focus{border-color:var(--border-focus)}
+</style>
+</head>
+<body>
+
+<!-- Ambient background -->
+<div class="bg-ambient">
+  <div class="bg-orb"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-orb"></div>
+</div>
+
+<!-- App Shell -->
+<div class="app-shell">
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-brand">
+      <div class="header-logo">FC</div>
+      <span>FinCalc Pro</span>
+    </div>
+    <div class="header-spacer"></div>
+    <select class="currency-select" id="currencySelect" title="Change display currency"></select>
+    <div class="header-search-wrapper" id="headerSearchWrap">
+      <span class="header-search-icon">🔍</span>
+      <input type="text" id="globalSearch" placeholder="Search 76 calculators..." autocomplete="off">
+    </div>
+    <button class="header-btn theme-btn" id="themeToggle" title="Toggle theme">🌓</button>
+  </header>
+
+  <!-- Content -->
+  <div class="app-content" id="appContent">
+    <!-- Home View (card grid) -->
+    <div class="home-view" id="homeView">
+      <!-- Hero -->
+      <section class="hero">
+        <h1>Every <span class="gradient-text">financial calculation</span><br>you'll ever need.</h1>
+        <p>76 professional-grade calculators for loans, investments, retirement, stocks, and more — all in one beautifully crafted toolkit.</p>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="num">76</div><div class="lbl">Calculators</div></div>
+          <div class="hero-stat"><div class="num">7</div><div class="lbl">Categories</div></div>
+          <div class="hero-stat"><div class="num">100%</div><div class="lbl">Free</div></div>
+        </div>
+      </section>
+
+      <!-- Category cards (landing) -->
+      <div id="categoryCards"></div>
+      <!-- Calculator grid (shown when category selected) -->
+      <div id="categoryDetail" style="display:none"></div>
+    </div>
+
+    <!-- Calculator Detail View -->
+    <div class="calc-view" id="calcView"></div>
+  </div>
+</div>
+
+<!-- Toast container -->
+<div class="toast-bar" id="toastBar"></div>
+
+<script>
+// =========================================================================
+// FINCALC PRO — Premium Financial Calculator Application
+// =========================================================================
+
+// --- State ---
+const STATE = {
+  activeCalc: null,
+  activeCategory: null,
+  theme: localStorage.getItem('fincalc-theme') || 'dark',
+  currency: localStorage.getItem('fincalc-currency') || '$',
+};
+
+// --- Utility ---
+const $ = (s, c=document) => c.querySelector(s);
+const $$ = (s, c=document) => [...c.querySelectorAll(s)];
+const fmt = (n, d=2, sym='') => {
+  if(n===null||n===undefined||isNaN(n)) return '—';
+  const s = sym || STATE.currency;
+  return s + ' ' + n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+};
+const fmtPct = (n, d=2) => fmt(n,d)+'%';
+const pv = v => {const n=parseFloat(String(v).replace(/[^0-9.\-]/g,''));return isNaN(n)?0:n;};
+const toast = (msg, type='') => {
+  const c=$('#toastBar');const el=document.createElement('div');
+  el.className='toast '+type;el.textContent=msg;c.appendChild(el);
+  setTimeout(()=>{el.style.opacity='0';el.style.transition='opacity 300ms';setTimeout(()=>el.remove(),300)},2800);
+};
+
+// --- Currency ---
+function populateCurrencySelector(){
+  const sel = $('#currencySelect');
+  // All countries A-Z by country name
+  let html = '';
+  CURRENCIES.forEach(c => {
+    html += `<option value="${c.sym}">${c.country} — ${c.sym} (${c.code})</option>`;
+  });
+  sel.innerHTML = html;
+  sel.value = STATE.currency;
+}
+$('#currencySelect').addEventListener('change', function(){
+  STATE.currency = this.value;
+  localStorage.setItem('fincalc-currency', STATE.currency);
+  // Update all currency suffixes
+  applyCurrencySuffixes();
+  // Re-trigger calc if one is open so results show new currency
+  if(STATE.activeCalc){
+    const btn = $('#calcBody')?.querySelector('button.btn-primary');
+    if(btn) btn.click();
+  }
+});
+
+// --- Apply currency suffixes ---
+function applyCurrencySuffixes(){
+  $$('.input-suffix .suffix').forEach(s => {
+    const t = s.textContent.trim();
+    // Only replace currency-like symbols, not % or text labels
+    if(t && t.length <= 3 && !t.includes('%') && isNaN(t) && t !== 'yrs' && t !== 'mo') {
+      s.textContent = STATE.currency;
+    }
+  });
+}
+
+// --- Input tooltip helper ---
+function labelWithTip(text, tip){
+  return `<span class="input-label-row">${text}<span class="tip-dot" tabindex="0">?<span class="tip-tooltip">${tip}</span></span></span>`;
+}
+
+// --- Theme ---
+function setTheme(t){
+  STATE.theme=t;document.documentElement.setAttribute('data-theme',t);
+  localStorage.setItem('fincalc-theme',t);
+}
+setTheme(STATE.theme);
+$('#themeToggle').addEventListener('click',()=>{
+  setTheme(STATE.theme==='dark'?'light':'dark');
+});
+
+// =========================================================================
+// DATA — Categories & Calculators
+// =========================================================================
+const CATEGORIES = [
+  {id:'finance',icon:'📈',name:'Finance & Investment',desc:'TVM, compound interest, IRR, bonds, and more.',calcs:[
+    {id:'tvm',icon:'⏱️',name:'TVM Calculator',desc:'Time Value of Money — compute present value, future value, payments, rate, or periods.'},
+    {id:'currency',icon:'💱',name:'Currency Converter',desc:'Convert between world currencies with up-to-date exchange rates.'},
+    {id:'compound',icon:'📈',name:'Compound Interest',desc:'See how your money grows with the power of compound interest over time.'},
+    {id:'roi',icon:'💰',name:'Return On Investment (ROI)',desc:'Calculate your return on investment percentage and annualized ROI.'},
+    {id:'irrnpv',icon:'📊',name:'IRR NPV Calculator',desc:'Compute Internal Rate of Return and Net Present Value for any cash flow stream.'},
+    {id:'bond',icon:'📜',name:'Bond Calculator',desc:'Price bonds and calculate yield to maturity and current yield.'},
+    {id:'taxequiv',icon:'🧾',name:'Tax Equivalent Yield',desc:'Compare taxable and tax-free investment yields at your tax bracket.'},
+    {id:'rule72',icon:'🔢',name:'Rule of 72',desc:'Quickly estimate how many years it takes to double your investment.'},
+    {id:'college',icon:'🎓',name:'College Savings',desc:'Plan how much to save monthly for future college expenses.'},
+    {id:'investment-income',icon:'💵',name:'Investment Income',desc:'Estimate annual and monthly income from your investment portfolio.'},
+    {id:'mutual-fund',icon:'📉',name:'Mutual Fund Fee Impact',desc:'See the devastating long-term cost of high expense ratios.'},
+    {id:'hsa',icon:'🏥',name:'HSA Calculator',desc:'Maximize your Health Savings Account with triple tax advantages.'},
+    {id:'savings-goal',icon:'🎯',name:'Savings Goal',desc:'Find out how much to save each month to hit your financial target.'},
+    {id:'cd',icon:'🏦',name:'CD Calculator',desc:'Calculate Certificate of Deposit earnings and APY at maturity.'},
+  ]},
+  {id:'loan',icon:'🏠',name:'Loan & Mortgage',desc:'Monthly payments, amortization, refinance, affordability.',calcs:[
+    {id:'loan',icon:'🏦',name:'Loan Calculator',desc:'Monthly payments, total interest, and full amortization schedule.'},
+    {id:'loan-compare',icon:'⚖️',name:'Loan Comparison',desc:'Compare two loans side-by-side — see which saves you more.'},
+    {id:'loan-refinance',icon:'🔄',name:'Loan Refinance',desc:'Is refinancing worth it? Calculate breakeven and savings.'},
+    {id:'apr',icon:'📋',name:'APR Calculator',desc:'True annual percentage rate including all fees and costs.'},
+    {id:'apr-advanced',icon:'📊',name:'APR Advanced',desc:'Advanced APR with origination fees, points, and closing costs.'},
+    {id:'commercial',icon:'🏢',name:'Commercial Loan',desc:'Business loans with balloon payments and custom structures.'},
+    {id:'loan-analysis',icon:'🔍',name:'Loan Analysis',desc:'What-if scenarios: extra payments, lump sums, and payoff timelines.'},
+    {id:'home-afford',icon:'🏡',name:'Home Affordability',desc:'How much house can you afford? Based on DTI and income.'},
+    {id:'rent-vs-buy',icon:'🏷️',name:'Rent vs Buy',desc:'The ultimate rent versus buy comparison with full financial picture.'},
+    {id:'mortgage-tax',icon:'🧾',name:'Mortgage Tax Savings',desc:'Estimate annual tax savings from mortgage interest deductions.'},
+    {id:'discount-points',icon:'💎',name:'Discount Points',desc:'Should you buy mortgage points? Find the breakeven period.'},
+    {id:'arm',icon:'📐',name:'Adjustable Rate Mortgage',desc:'ARM payments through initial fixed and adjustment periods.'},
+    {id:'fixed-vs-arm',icon:'⚖️',name:'Fixed vs Adjustable Rate',desc:'Compare total costs of fixed versus ARM over your timeline.'},
+    {id:'biweekly',icon:'📅',name:'Bi-weekly Payments',desc:'See how bi-weekly payments slash years off your mortgage.'},
+    {id:'interest-only',icon:'⏳',name:'Interest Only Loan',desc:'Calculate interest-only period payments and post-IO jump.'},
+    {id:'rental-property',icon:'🏘️',name:'Rental Property',desc:'Cash flow, cap rate, and cash-on-cash return analysis.'},
+  ]},
+  {id:'retirement',icon:'🏖️',name:'Retirement Planning',desc:'401(k), IRA, Social Security, RMDs, and retirement income.',calcs:[
+    {id:'retirement-planner',icon:'🏖️',name:'Retirement Planner',desc:'Comprehensive plan: are you on track or facing a shortfall?'},
+    {id:'401k-contribution',icon:'🏦',name:'401(k) Contribution',desc:'Growth projections with contributions and employer match.'},
+    {id:'401k-max',icon:'📈',name:'401(k) Save the Max',desc:'Maxing out vs contributing less — the dramatic difference.'},
+    {id:'retirement-savings',icon:'🐷',name:'Retirement Savings Analysis',desc:'Are your current savings rate and balance on track?'},
+    {id:'retirement-income',icon:'💸',name:'Retirement Income Analysis',desc:'Monthly income from all sources: savings, SS, and pensions.'},
+    {id:'ira-roth',icon:'🏛️',name:'Traditional vs Roth IRA',desc:'Which IRA gives you more after-tax retirement income?'},
+    {id:'rmd',icon:'📤',name:'Required Minimum Distribution',desc:'Calculate your RMD based on age and account balance.'},
+    {id:'social-security',icon:'🛡️',name:'Social Security Estimator',desc:'Estimate your monthly benefit at different claiming ages.'},
+    {id:'social-security-analysis',icon:'🔬',name:'Social Security Analysis',desc:'Optimal claiming strategy: 62, 67, or 70? Find breakeven.'},
+    {id:'social-security-dist',icon:'📦',name:'Social Security Distribution',desc:'Project lifetime Social Security distributions.'},
+    {id:'asset-allocation',icon:'🥧',name:'Asset Allocation',desc:'Optimal stock/bond/cash mix based on age and risk tolerance.'},
+    {id:'retirement-income-calc',icon:'💰',name:'Retirement Income',desc:'Sustainable monthly income from your nest egg (4% rule).'},
+    {id:'retirement-calc',icon:'🧮',name:'Retirement Calculator',desc:'How much to save and how long will it last in retirement?'},
+    {id:'annuity',icon:'🔁',name:'Annuity Calculator',desc:'Present and future value of annuity payments.'},
+  ]},
+  {id:'stock',icon:'📊',name:'Stock & Investing',desc:'Stock valuation, options, technical analysis, portfolio metrics.',calcs:[
+    {id:'stock-return',icon:'📈',name:'Stock Return & Capital Gain',desc:'Total return including price change, dividends, and commissions.'},
+    {id:'stock-constant',icon:'🌱',name:'Dividend Growth Model',desc:'Gordon Growth Model for valuing dividend-paying stocks.'},
+    {id:'stock-nonconstant',icon:'📊',name:'Non-constant Growth Stock',desc:'Value stocks with varying dividend growth phases.'},
+    {id:'capm',icon:'📐',name:'CAPM Calculator',desc:'Expected return using Capital Asset Pricing Model and beta.'},
+    {id:'expected-return',icon:'🎲',name:'Expected Return',desc:'Probability-weighted return across bull, base, and bear cases.'},
+    {id:'holding-period',icon:'⏱️',name:'Holding Period Return',desc:'Total return over your exact holding period.'},
+    {id:'wacc',icon:'⚖️',name:'WACC Calculator',desc:'Weighted Average Cost of Capital for company valuation.'},
+    {id:'black-scholes',icon:'🎯',name:'Black-Scholes Options',desc:'Theoretical pricing for European call and put options.'},
+    {id:'pivot-points',icon:'📍',name:'Pivot Points',desc:'Trading support and resistance levels from prior period data.'},
+    {id:'fibonacci',icon:'🔢',name:'Fibonacci Levels',desc:'Retracement and extension levels for technical analysis.'},
+    {id:'dividend-tax',icon:'💸',name:'Dividend Tax',desc:'After-tax dividend income at qualified and ordinary rates.'},
+    {id:'commodities',icon:'🛢️',name:'Commodities & Futures',desc:'Profit/loss for commodity and futures contract trades.'},
+  ]},
+  {id:'credit',icon:'💳',name:'Credit Cards',desc:'Payoff timelines and the true cost of minimum payments.',calcs:[
+    {id:'credit-payoff',icon:'💳',name:'Credit Card Payoff',desc:'How long to be debt-free and total interest with fixed payments.'},
+    {id:'credit-minimum',icon:'⚠️',name:'Minimum Payment Trap',desc:'The shocking true cost of making only minimum payments.'},
+  ]},
+  {id:'auto',icon:'🚗',name:'Auto Loan & Lease',desc:'Car loans, lease payments, and total vehicle costs.',calcs:[
+    {id:'auto-loan',icon:'🚗',name:'Auto Loan Calculator',desc:'Car payments with down payment, trade-in, tax, and amortization.'},
+    {id:'auto-lease',icon:'🚙',name:'Auto Lease Calculator',desc:'Monthly lease payment from price, residual, and money factor.'},
+  ]},
+  {id:'misc',icon:'🔧',name:'Miscellaneous',desc:'Tips, inflation, unit conversion, paychecks, ratios, and more.',calcs:[
+    {id:'tip',icon:'🍽️',name:'Tip Calculator',desc:'Quick tip amounts at any percentage, split across any number of people.'},
+    {id:'discount-tax',icon:'🏷️',name:'Discount & Tax',desc:'Final price after applying a discount and adding sales tax.'},
+    {id:'percentage',icon:'%',name:'Percentage Calculator',desc:'Percent of, percent change, and "is what percent" calculations.'},
+    {id:'date-calc',icon:'📅',name:'Date Calculator',desc:'Days between dates or add/subtract days, weeks, months, or years.'},
+    {id:'unit-conversion',icon:'📏',name:'Unit Converter',desc:'Convert length, weight, volume, temperature, area, and speed.'},
+    {id:'inflation',icon:'📉',name:'US Inflation',desc:'See inflation\'s erosion of purchasing power over the years.'},
+    {id:'tbill',icon:'📜',name:'Treasury Bill',desc:'T-Bill price, discount yield, and investment yield.'},
+    {id:'margin-markup',icon:'💹',name:'Margin & Markup',desc:'Profit margin vs markup — know the crucial difference.'},
+    {id:'business-forecast',icon:'📈',name:'Business Forecast',desc:'Project revenue growth year by year.'},
+    {id:'fuel',icon:'⛽',name:'Fuel Cost',desc:'Trip fuel costs with MPG or L/100km, split among passengers.'},
+    {id:'hourly-salary',icon:'💼',name:'Hourly to Salary',desc:'Convert hourly wage to annual, monthly, and weekly pay.'},
+    {id:'salary-increase',icon:'📈',name:'Salary Increase',desc:'See the compounding effect of annual raises over time.'},
+    {id:'paycheck-tax',icon:'🧾',name:'US Paycheck Tax',desc:'Estimate take-home pay after federal, SS, and Medicare taxes.'},
+    {id:'net-distribution',icon:'📤',name:'Net Distribution',desc:'After-tax amount from retirement account withdrawals.'},
+    {id:'effective-rate',icon:'🔄',name:'Effective Rate',desc:'Convert nominal rate to effective annual rate (EAR).'},
+    {id:'financial-ratios',icon:'📊',name:'Financial Ratios',desc:'Key ratios from balance sheet and income statement data.'},
+  ]},
+];
+
+// Build flat map
+const ALL_CALCS = new Map();
+CATEGORIES.forEach(cat => cat.calcs.forEach(c => ALL_CALCS.set(c.id,{...c,category:cat})));
+
+// =========================================================================
+// RENDER — Category Cards (Landing)
+// =========================================================================
+function renderHome(){
+  // Show category cards
+  let html='<div class="cat-cards-grid">';
+  CATEGORIES.forEach(cat=>{
+    html+=`<div class="cat-card" onclick="showCategory('${cat.id}')" data-cat="${cat.id}">`;
+    html+=`<div class="cat-card-icon">${cat.icon}</div>`;
+    html+=`<div class="cat-card-name">${cat.name}</div>`;
+    html+=`<div class="cat-card-count">${cat.calcs.length} calculators — ${cat.desc}</div>`;
+    html+=`<span class="cat-card-arrow">→</span>`;
+    html+=`</div>`;
+  });
+  html+='</div>';
+  $('#categoryCards').innerHTML=html;
+  $('#categoryCards').style.display='';
+  $('#categoryDetail').style.display='none';
+}
+
+function showCategory(catId){
+  const cat = CATEGORIES.find(c=>c.id===catId);
+  if(!cat) return;
+  STATE.activeCategory=catId;
+  $('#categoryCards').style.display='none';
+  let html=`
+    <div class="cat-detail-header">
+      <button class="btn-back" onclick="renderHome()" title="Back to categories">←</button>
+      <span class="cat-icon">${cat.icon}</span>
+      <h2>${cat.name}</h2>
+      <span class="cat-count-badge">${cat.calcs.length} tools</span>
+    </div>
+    <div class="calc-grid" id="activeCalcGrid">`;
+  cat.calcs.forEach(c=>{
+    html+=`<div class="calc-card" onclick="openCalc('${c.id}')" data-calc="${c.id}" data-cat="${catId}">`;
+    html+=`<div class="calc-card-icon">${c.icon||'📊'}</div>`;
+    html+=`<div class="calc-card-name">${c.name}</div>`;
+    html+=`<div class="calc-card-desc">${c.desc}</div>`;
+    html+=`<span class="card-indicator">→</span>`;
+    html+=`</div>`;
+  });
+  html+='</div>';
+  $('#categoryDetail').innerHTML=html;
+  $('#categoryDetail').style.display='';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// =========================================================================
+// NAVIGATION
+// =========================================================================
+function openCalc(calcId){
+  const info = ALL_CALCS.get(calcId);
+  if(!info) return;
+
+  STATE.activeCalc=calcId;
+  $('#categoryCards').style.display='none';
+  $('#categoryDetail').style.display='none';
+  $('#calcView').classList.add('active');
+  $('#calcView').style.display='block';
+  $('#headerSearchWrap').style.opacity='0.3';
+  $('#headerSearchWrap').style.pointerEvents='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+
+  let html=`
+    <div class="calc-view-container">
+      <div class="calc-view-header">
+        <button class="btn-back" onclick="goBack()" title="Back">←</button>
+        <h1 class="calc-view-title">${info.icon||''} ${info.name}</h1>
+        <button class="btn-help" id="calcHelpBtn" title="What does this calculator do?">?</button>
+      </div>
+      <p class="calc-view-desc">${info.desc}</p>
+      <div class="help-panel" id="calcHelpPanel"></div>
+      <div id="calcBody"></div>
+    </div>
+  `;
+  $('#calcView').innerHTML=html;
+
+  const body = $('#calcBody');
+  if(CALCULATORS[calcId]) CALCULATORS[calcId].render(body);
+
+  // Apply current currency symbol to all suffix spans
+  applyCurrencySuffixes();
+
+  $('#calcHelpBtn').addEventListener('click',()=>{
+    const panel=$('#calcHelpPanel');
+    panel.classList.toggle('open');
+    if(panel.classList.contains('open')&&!panel.dataset.loaded){
+      panel.innerHTML=helpText(calcId);
+      panel.dataset.loaded='1';
+    }
+  });
+}
+
+function goBack(){
+  STATE.activeCalc=null;
+  $('#calcView').classList.remove('active');
+  $('#calcView').style.display='none';
+  $('#calcView').innerHTML='';
+  $('#headerSearchWrap').style.opacity='1';
+  $('#headerSearchWrap').style.pointerEvents='auto';
+  if(STATE.activeCategory){
+    showCategory(STATE.activeCategory);
+  } else {
+    renderHome();
+  }
+}
+
+function goHome(){
+  STATE.activeCalc=null;
+  STATE.activeCategory=null;
+  $('#calcView').classList.remove('active');
+  $('#calcView').style.display='none';
+  $('#calcView').innerHTML='';
+  $('#headerSearchWrap').style.opacity='1';
+  $('#headerSearchWrap').style.pointerEvents='auto';
+  renderHome();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// =========================================================================
+// SEARCH
+// =========================================================================
+$('#globalSearch').addEventListener('input',function(){
+  const q = this.value.toLowerCase().trim();
+  // Search category cards on landing
+  $$('.cat-card').forEach(card=>{
+    const name = (card.querySelector('.cat-card-name')?.textContent||'').toLowerCase();
+    const desc = (card.querySelector('.cat-card-count')?.textContent||'').toLowerCase();
+    card.classList.toggle('hidden',!!q && !name.includes(q) && !desc.includes(q));
+  });
+  // Search calc cards in category detail
+  $$('#activeCalcGrid .calc-card').forEach(card=>{
+    const name = (card.querySelector('.calc-card-name')?.textContent||'').toLowerCase();
+    const desc = (card.querySelector('.calc-card-desc')?.textContent||'').toLowerCase();
+    card.classList.toggle('hidden',!!q && !name.includes(q) && !desc.includes(q));
+  });
+});
+
+// =========================================================================
+// HELP TEXT
+// =========================================================================
+function helpText(id){
+  const t={
+    tvm:'<h4>Time Value of Money</h4><p>Money today is worth more than the same amount in the future due to its earning potential. Enter any 4 of the 5 variables (PV, FV, PMT, Rate, Periods) and solve for the fifth.</p><div class="formula">FV = PV(1+r)ⁿ + PMT[(1+r)ⁿ−1]/r</div>',
+    compound:'<h4>Compound Interest</h4><p>Einstein called compound interest the eighth wonder of the world. You earn interest on your interest — and over decades, the effect is staggering.</p><div class="formula">A = P(1 + r/n)^(nt)</div>',
+    irrnpv:'<h4>IRR & NPV</h4><p><strong>NPV</strong> discounts future cash flows to today\'s dollars — positive means the investment adds value. <strong>IRR</strong> is the discount rate that makes NPV zero.</p><div class="formula">NPV = Σ CFₜ/(1+r)ᵗ − Investment</div>',
+    loan:'<h4>Loan Amortization</h4><p>Each payment covers interest first, then principal. Early payments are mostly interest; later payments are mostly principal.</p><div class="formula">PMT = P·r(1+r)ⁿ / ((1+r)ⁿ−1)</div>',
+    capm:'<h4>CAPM — Capital Asset Pricing Model</h4><p>Calculates the expected return of an asset based on its systematic risk (beta), the risk-free rate, and expected market return.</p><div class="formula">E(R) = Rf + β(Rm − Rf)</div>',
+    'black-scholes':'<h4>Black-Scholes Option Pricing</h4><p>The Nobel Prize-winning model for pricing European options. Uses stock price, strike, time, risk-free rate, and volatility.</p>',
+    'effective-rate':'<h4>Effective Annual Rate</h4><p>A 12% nominal rate compounded monthly actually yields 12.68% — the EAR accounts for intra-year compounding.</p><div class="formula">EAR = (1 + r/n)ⁿ − 1</div>',
+    'margin-markup':'<h4>Margin ≠ Markup</h4><p><strong>Margin</strong> is profit as % of selling price. <strong>Markup</strong> is profit as % of cost. A 50% markup gives only a 33% margin — know the difference when pricing.</p>',
+  };
+  return t[id] || `<h4>About this Calculator</h4><p>Enter your values in the fields below and click Calculate. All calculators use standard financial formulas for accurate results.</p>`;
+}
+
+// =========================================================================
+// CALCULATOR REGISTRY
+// =========================================================================
+const CALCULATORS = {};
+
+// --- TVM ---
+CALCULATORS.tvm = {
+  render(ct){ct.innerHTML=`
+    <div class="input-card"><div class="input-card-title">⚙️ Time Value of Money</div>
+    <div class="input-grid">
+      <div class="input-group"><label>${labelWithTip('Present Value (PV)','The current value of a future sum of money. Enter 0 if there is no initial lump sum.')}</label><div class="input-suffix"><input type="number" id="tvm-pv" placeholder="0.00" step="any"><span class="suffix">$</span></div></div>
+      <div class="input-group"><label>${labelWithTip('Future Value (FV)','The desired or expected value at the end of the periods. Enter 0 if you want to find the FV.')}</label><div class="input-suffix"><input type="number" id="tvm-fv" placeholder="0.00" step="any"><span class="suffix">$</span></div></div>
+      <div class="input-group"><label>${labelWithTip('Payment (PMT)','The regular payment amount per period. Use negative for outflows (payments you make), positive for inflows.')}</label><div class="input-suffix"><input type="number" id="tvm-pmt" placeholder="0.00" step="any"><span class="suffix">$</span></div></div>
+      <div class="input-group"><label>${labelWithTip('Annual Rate (r)','The annual interest rate as a percentage. E.g., enter 5 for 5%.')}</label><div class="input-suffix"><input type="number" id="tvm-rate" placeholder="5.00" step="any"><span class="suffix">%</span></div></div>
+      <div class="input-group"><label>${labelWithTip('Number of Periods (N)','Total number of compounding periods. E.g., for 20 years with quarterly compounding, enter 80 (20×4). For 30 years monthly, enter 360 (30×12).')}</label><input type="number" id="tvm-n" placeholder="80" step="any"></div>
+      <div class="input-group"><label>Compounding</label><select id="tvm-comp"><option value="1">Annually</option><option value="4">Quarterly</option><option value="12" selected>Monthly</option><option value="365">Daily</option></select></div>
+      <div class="input-group"><label>${labelWithTip('Solve For','Select which variable to calculate. The other 4 must have values entered.')}</label><select id="tvm-solve"><option value="fv">Future Value (FV)</option><option value="pv">Present Value (PV)</option><option value="pmt">Payment (PMT)</option><option value="rate">Rate (r)</option><option value="n">Periods (n)</option></select></div>
+      <div class="input-group"><label>${labelWithTip('Payment Timing','END: payments at end of each period (standard for loans, investments). BEGIN: payments at start (annuity due, lease).')}</label><select id="tvm-mode"><option value="end" selected>End of Period</option><option value="begin">Beginning of Period</option></select></div>
+    </div><div class="btn-row"><button class="btn btn-primary" id="tvm-calc">Calculate</button><button class="btn btn-secondary" id="tvm-clear">Clear</button></div></div>
+    <div id="tvm-results"></div>`;
+    $('#tvm-calc').onclick=()=>{
+      let pvStr=$('#tvm-pv').value.trim(),fvStr=$('#tvm-fv').value.trim(),pmtStr=$('#tvm-pmt').value.trim(),rateStr=$('#tvm-rate').value.trim(),nStr=$('#tvm-n').value.trim();
+      let pv_=pv(pvStr),fv_=pv(fvStr),pmt_=pv(pmtStr),rate=pv(rateStr)/100,n_=pv(nStr),comp=+$('#tvm-comp').value,solve=$('#tvm-solve').value;
+      let mode=$('#tvm-mode').value, isBegin=mode==='begin';
+      let r=rate/comp,np=n_; // User enters total periods directly, rate is per-period
+      // Check which inputs user filled (non-empty string)
+      let filled=[pvStr!=='',fvStr!=='',pmtStr!=='',rateStr!=='',nStr!==''].filter(Boolean).length;
+      if(filled<4){toast('Enter values for 4 fields — leave the one you want to solve for empty','error');return;}
+      let result;
+      // Helper: multiplier for BEGIN mode (1+r if begin, 1 if end)
+      const B = isBegin ? (1+r) : 1;
+      try{
+        if(solve==='fv'){
+          result = pv_*Math.pow(1+r,np) + pmt_*B*((Math.pow(1+r,np)-1)/r);
+        }else if(solve==='pv'){
+          if(fvStr!=='') result = (fv_ - pmt_*B*((Math.pow(1+r,np)-1)/r)) / Math.pow(1+r,np);
+          else result = -pmt_*B*((1-Math.pow(1+r,-np))/r);
+        }else if(solve==='pmt'){
+          result = (fv_ - pv_*Math.pow(1+r,np)) / (B*((Math.pow(1+r,np)-1)/r));
+        }else if(solve==='rate'){
+          let g=r; // initial guess
+          for(let i=0;i<200;i++){
+            let pow = Math.pow(1+g,np);
+            let f1 = pv_*pow + pmt_*B*((pow-1)/g) - fv_;
+            // derivative: d/dg of the above
+            let dpow = np*Math.pow(1+g,np-1);
+            let f2 = pv_*dpow + pmt_*B*((np*Math.pow(1+g,np-1)*g - pow + 1)/(g*g));
+            if(Math.abs(f2)<1e-15) break;
+            g -= f1/f2;
+            if(Math.abs(f1)<1e-10) break;
+          }
+          result = g*comp*100;
+        }else{ // solve for n
+          let num = fv_*r + pmt_*B;
+          let den = pv_*r + pmt_*B;
+          if(num<=0||den<=0||num/den<=0){toast('Cannot solve for n with these values — check signs','error');return;}
+          result = Math.log(num/den)/Math.log(1+r);
+        }
+      }catch(e){toast('Calculation error — check your inputs','error');return;}
+      let rl,rf;if(solve==='rate'){rl='Annual Rate';rf=fmtPct(result,3);}else if(solve==='n'){rl='Total Periods';rf=fmt(Math.max(0,result),2);}else{rl=solve==='fv'?'Future Value':solve==='pv'?'Present Value':'Payment';rf=fmt(result,2);}
+      let aRate=solve==='rate'?result:rate*100,aN=solve==='n'?result:n_,aFV=solve==='fv'?result:fv_,aPV=solve==='pv'?result:pv_,aPMT=solve==='pmt'?result:pmt_,totP=aPMT*np,totI=aFV-aPV-totP;
+      $('#tvm-results').innerHTML=`<div class="results-panel"><h3>Results — Solved for ${rl} (${isBegin?'Beginning':'End'} of Period)</h3><div class="result-grid"><div class="result-item"><div class="label">${rl}</div><div class="value">${rf}</div></div><div class="result-item"><div class="label">Present Value</div><div class="value">${fmt(aPV,2)}</div></div><div class="result-item"><div class="label">Future Value</div><div class="value">${fmt(aFV,2)}</div></div><div class="result-item"><div class="label">Payment</div><div class="value">${fmt(aPMT,2)}</div></div><div class="result-item"><div class="label">Total Payments</div><div class="value">${fmt(totP,2)}</div></div><div class="result-item"><div class="label">Total Interest</div><div class="value">${fmt(totI,2)}</div></div></div></div>`;
+    };
+    $('#tvm-clear').onclick=()=>{['pv','fv','pmt','rate','n'].forEach(x=>$('#tvm-'+x).value='');$('#tvm-results').innerHTML='';};
+  }
+};
+
+// --- Full Currency Registry (sorted by country name A-Z, all 195+ countries) ---
+const CURRENCIES = [
+  {country:'Afghanistan',code:'AFN',currency:'Afghan Afghani',sym:'؋',rate:72},
+  {country:'Albania',code:'ALL',currency:'Albanian Lek',sym:'L',rate:97},
+  {country:'Algeria',code:'DZD',currency:'Algerian Dinar',sym:'د.ج',rate:134},
+  {country:'Andorra',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Angola',code:'AOA',currency:'Angolan Kwanza',sym:'Kz',rate:832},
+  {country:'Antigua & Barbuda',code:'XCD',currency:'East Caribbean Dollar',sym:'$',rate:2.70},
+  {country:'Argentina',code:'ARS',currency:'Argentine Peso',sym:'$',rate:835},
+  {country:'Armenia',code:'AMD',currency:'Armenian Dram',sym:'֏',rate:400},
+  {country:'Australia',code:'AUD',currency:'Australian Dollar',sym:'A$',rate:1.535},
+  {country:'Austria',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Azerbaijan',code:'AZN',currency:'Azerbaijani Manat',sym:'₼',rate:1.70},
+  {country:'Bahamas',code:'BSD',currency:'Bahamian Dollar',sym:'$',rate:1},
+  {country:'Bahrain',code:'BHD',currency:'Bahraini Dinar',sym:'.د.ب',rate:0.376},
+  {country:'Bangladesh',code:'BDT',currency:'Bangladeshi Taka',sym:'৳',rate:109.5},
+  {country:'Barbados',code:'BBD',currency:'Barbadian Dollar',sym:'$',rate:2},
+  {country:'Belarus',code:'BYN',currency:'Belarusian Ruble',sym:'Br',rate:3.25},
+  {country:'Belgium',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Belize',code:'BZD',currency:'Belize Dollar',sym:'$',rate:2.02},
+  {country:'Benin',code:'XOF',currency:'West African CFA Franc',sym:'CFA',rate:600},
+  {country:'Bhutan',code:'BTN',currency:'Bhutanese Ngultrum',sym:'Nu.',rate:83.2},
+  {country:'Bolivia',code:'BOB',currency:'Bolivian Boliviano',sym:'Bs',rate:6.91},
+  {country:'Bosnia & Herzegovina',code:'BAM',currency:'Bosnia Convertible Mark',sym:'KM',rate:1.79},
+  {country:'Botswana',code:'BWP',currency:'Botswana Pula',sym:'P',rate:13.6},
+  {country:'Brazil',code:'BRL',currency:'Brazilian Real',sym:'R$',rate:4.95},
+  {country:'Brunei',code:'BND',currency:'Brunei Dollar',sym:'$',rate:1.34},
+  {country:'Bulgaria',code:'BGN',currency:'Bulgarian Lev',sym:'лв',rate:1.79},
+  {country:'Burkina Faso',code:'XOF',currency:'West African CFA Franc',sym:'CFA',rate:600},
+  {country:'Burundi',code:'BIF',currency:'Burundian Franc',sym:'FBu',rate:2850},
+  {country:'Cabo Verde',code:'CVE',currency:'Cape Verdean Escudo',sym:'$',rate:101},
+  {country:'Cambodia',code:'KHR',currency:'Cambodian Riel',sym:'៛',rate:4100},
+  {country:'Cameroon',code:'XAF',currency:'Central African CFA Franc',sym:'FCFA',rate:600},
+  {country:'Canada',code:'CAD',currency:'Canadian Dollar',sym:'C$',rate:1.365},
+  {country:'Central African Rep.',code:'XAF',currency:'Central African CFA Franc',sym:'FCFA',rate:600},
+  {country:'Chad',code:'XAF',currency:'Central African CFA Franc',sym:'FCFA',rate:600},
+  {country:'Chile',code:'CLP',currency:'Chilean Peso',sym:'$',rate:930},
+  {country:'China',code:'CNY',currency:'Chinese Yuan Renminbi',sym:'¥',rate:7.24},
+  {country:'Colombia',code:'COP',currency:'Colombian Peso',sym:'$',rate:3920},
+  {country:'Comoros',code:'KMF',currency:'Comorian Franc',sym:'CF',rate:450},
+  {country:'Congo, Dem. Rep.',code:'CDF',currency:'Congolese Franc',sym:'FC',rate:2720},
+  {country:'Congo, Republic',code:'XAF',currency:'Central African CFA Franc',sym:'FCFA',rate:600},
+  {country:'Costa Rica',code:'CRC',currency:'Costa Rican Colón',sym:'₡',rate:525},
+  {country:"Côte d'Ivoire",code:'XOF',currency:'West African CFA Franc',sym:'CFA',rate:600},
+  {country:'Croatia',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Cuba',code:'CUP',currency:'Cuban Peso',sym:'$',rate:24},
+  {country:'Cyprus',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Czech Republic',code:'CZK',currency:'Czech Koruna',sym:'Kč',rate:22.5},
+  {country:'Denmark',code:'DKK',currency:'Danish Krone',sym:'kr',rate:6.88},
+  {country:'Djibouti',code:'DJF',currency:'Djiboutian Franc',sym:'Fdj',rate:178},
+  {country:'Dominica',code:'XCD',currency:'East Caribbean Dollar',sym:'$',rate:2.70},
+  {country:'Dominican Republic',code:'DOP',currency:'Dominican Peso',sym:'$',rate:57.5},
+  {country:'Ecuador',code:'USD',currency:'US Dollar',sym:'$',rate:1},
+  {country:'Egypt',code:'EGP',currency:'Egyptian Pound',sym:'£',rate:30.9},
+  {country:'El Salvador',code:'USD',currency:'US Dollar',sym:'$',rate:1},
+  {country:'Equatorial Guinea',code:'XAF',currency:'Central African CFA Franc',sym:'FCFA',rate:600},
+  {country:'Eritrea',code:'ERN',currency:'Eritrean Nakfa',sym:'Nfk',rate:15},
+  {country:'Estonia',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Eswatini',code:'SZL',currency:'Swazi Lilangeni',sym:'E',rate:18.3},
+  {country:'Ethiopia',code:'ETB',currency:'Ethiopian Birr',sym:'Br',rate:55.8},
+  {country:'Fiji',code:'FJD',currency:'Fijian Dollar',sym:'$',rate:2.23},
+  {country:'Finland',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'France',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Gabon',code:'XAF',currency:'Central African CFA Franc',sym:'FCFA',rate:600},
+  {country:'Gambia',code:'GMD',currency:'Gambian Dalasi',sym:'D',rate:67},
+  {country:'Georgia',code:'GEL',currency:'Georgian Lari',sym:'₾',rate:2.68},
+  {country:'Germany',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Ghana',code:'GHS',currency:'Ghanaian Cedi',sym:'₵',rate:12.3},
+  {country:'Greece',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Grenada',code:'XCD',currency:'East Caribbean Dollar',sym:'$',rate:2.70},
+  {country:'Guatemala',code:'GTQ',currency:'Guatemalan Quetzal',sym:'Q',rate:7.82},
+  {country:'Guinea',code:'GNF',currency:'Guinean Franc',sym:'FG',rate:8600},
+  {country:'Guinea-Bissau',code:'XOF',currency:'West African CFA Franc',sym:'CFA',rate:600},
+  {country:'Guyana',code:'GYD',currency:'Guyanese Dollar',sym:'$',rate:209},
+  {country:'Haiti',code:'HTG',currency:'Haitian Gourde',sym:'G',rate:132},
+  {country:'Honduras',code:'HNL',currency:'Honduran Lempira',sym:'L',rate:24.7},
+  {country:'Hong Kong',code:'HKD',currency:'Hong Kong Dollar',sym:'$',rate:7.82},
+  {country:'Hungary',code:'HUF',currency:'Hungarian Forint',sym:'Ft',rate:352},
+  {country:'Iceland',code:'ISK',currency:'Icelandic Króna',sym:'kr',rate:138},
+  {country:'India',code:'INR',currency:'Indian Rupee',sym:'₹',rate:83.2},
+  {country:'Indonesia',code:'IDR',currency:'Indonesian Rupiah',sym:'Rp',rate:15600},
+  {country:'Iran',code:'IRR',currency:'Iranian Rial',sym:'﷼',rate:42000},
+  {country:'Iraq',code:'IQD',currency:'Iraqi Dinar',sym:'ع.د',rate:1310},
+  {country:'Ireland',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Israel',code:'ILS',currency:'Israeli New Shekel',sym:'₪',rate:3.68},
+  {country:'Italy',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Jamaica',code:'JMD',currency:'Jamaican Dollar',sym:'$',rate:155},
+  {country:'Japan',code:'JPY',currency:'Japanese Yen',sym:'¥',rate:148.5},
+  {country:'Jordan',code:'JOD',currency:'Jordanian Dinar',sym:'د.ا',rate:0.709},
+  {country:'Kazakhstan',code:'KZT',currency:'Kazakhstani Tenge',sym:'₸',rate:462},
+  {country:'Kenya',code:'KES',currency:'Kenyan Shilling',sym:'KSh',rate:152},
+  {country:'Kiribati',code:'AUD',currency:'Australian Dollar',sym:'A$',rate:1.535},
+  {country:'Korea, North',code:'KPW',currency:'North Korean Won',sym:'₩',rate:900},
+  {country:'Korea, South',code:'KRW',currency:'South Korean Won',sym:'₩',rate:1320},
+  {country:'Kosovo',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Kuwait',code:'KWD',currency:'Kuwaiti Dinar',sym:'د.ك',rate:0.308},
+  {country:'Kyrgyzstan',code:'KGS',currency:'Kyrgyzstani Som',sym:'с',rate:89},
+  {country:'Laos',code:'LAK',currency:'Lao Kip',sym:'₭',rate:20700},
+  {country:'Latvia',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Lebanon',code:'LBP',currency:'Lebanese Pound',sym:'ل.ل',rate:89500},
+  {country:'Lesotho',code:'LSL',currency:'Lesotho Loti',sym:'M',rate:18.3},
+  {country:'Liberia',code:'LRD',currency:'Liberian Dollar',sym:'$',rate:193},
+  {country:'Libya',code:'LYD',currency:'Libyan Dinar',sym:'ل.د',rate:4.82},
+  {country:'Liechtenstein',code:'CHF',currency:'Swiss Franc',sym:'₣',rate:0.878},
+  {country:'Lithuania',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Luxembourg',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Macau',code:'MOP',currency:'Macanese Pataca',sym:'MOP$',rate:8.05},
+  {country:'Madagascar',code:'MGA',currency:'Malagasy Ariary',sym:'Ar',rate:4520},
+  {country:'Malawi',code:'MWK',currency:'Malawian Kwacha',sym:'MK',rate:1720},
+  {country:'Malaysia',code:'MYR',currency:'Malaysian Ringgit',sym:'RM',rate:4.68},
+  {country:'Maldives',code:'MVR',currency:'Maldivian Rufiyaa',sym:'Rf',rate:15.4},
+  {country:'Mali',code:'XOF',currency:'West African CFA Franc',sym:'CFA',rate:600},
+  {country:'Malta',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Marshall Islands',code:'USD',currency:'US Dollar',sym:'$',rate:1},
+  {country:'Mauritania',code:'MRU',currency:'Mauritanian Ouguiya',sym:'UM',rate:39.5},
+  {country:'Mauritius',code:'MUR',currency:'Mauritian Rupee',sym:'₨',rate:44.5},
+  {country:'Mexico',code:'MXN',currency:'Mexican Peso',sym:'$',rate:17.5},
+  {country:'Micronesia',code:'USD',currency:'US Dollar',sym:'$',rate:1},
+  {country:'Moldova',code:'MDL',currency:'Moldovan Leu',sym:'L',rate:18.1},
+  {country:'Monaco',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Mongolia',code:'MNT',currency:'Mongolian Tugrik',sym:'₮',rate:3450},
+  {country:'Montenegro',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Morocco',code:'MAD',currency:'Moroccan Dirham',sym:'د.م',rate:10.02},
+  {country:'Mozambique',code:'MZN',currency:'Mozambican Metical',sym:'MT',rate:63.8},
+  {country:'Myanmar',code:'MMK',currency:'Myanmar Kyat',sym:'K',rate:2100},
+  {country:'Namibia',code:'NAD',currency:'Namibian Dollar',sym:'$',rate:18.3},
+  {country:'Nauru',code:'AUD',currency:'Australian Dollar',sym:'A$',rate:1.535},
+  {country:'Nepal',code:'NPR',currency:'Nepalese Rupee',sym:'रू',rate:133},
+  {country:'Netherlands',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'New Zealand',code:'NZD',currency:'New Zealand Dollar',sym:'$',rate:1.62},
+  {country:'Nicaragua',code:'NIO',currency:'Nicaraguan Córdoba',sym:'C$',rate:36.6},
+  {country:'Niger',code:'XOF',currency:'West African CFA Franc',sym:'CFA',rate:600},
+  {country:'Nigeria',code:'NGN',currency:'Nigerian Naira',sym:'₦',rate:1580},
+  {country:'North Macedonia',code:'MKD',currency:'Macedonian Denar',sym:'ден',rate:56},
+  {country:'Norway',code:'NOK',currency:'Norwegian Krone',sym:'kr',rate:10.6},
+  {country:'Oman',code:'OMR',currency:'Omani Rial',sym:'ر.ع',rate:0.385},
+  {country:'Pakistan',code:'PKR',currency:'Pakistani Rupee',sym:'₨',rate:278},
+  {country:'Palau',code:'USD',currency:'US Dollar',sym:'$',rate:1},
+  {country:'Palestine',code:'ILS',currency:'Israeli New Shekel',sym:'₪',rate:3.68},
+  {country:'Panama',code:'USD',currency:'US Dollar',sym:'$',rate:1},
+  {country:'Papua New Guinea',code:'PGK',currency:'Papua New Guinea Kina',sym:'K',rate:3.75},
+  {country:'Paraguay',code:'PYG',currency:'Paraguayan Guaraní',sym:'₲',rate:7400},
+  {country:'Peru',code:'PEN',currency:'Peruvian Sol',sym:'S/',rate:3.72},
+  {country:'Philippines',code:'PHP',currency:'Philippine Peso',sym:'₱',rate:55.8},
+  {country:'Poland',code:'PLN',currency:'Polish Złoty',sym:'zł',rate:3.98},
+  {country:'Portugal',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Qatar',code:'QAR',currency:'Qatari Riyal',sym:'ر.ق',rate:3.64},
+  {country:'Romania',code:'RON',currency:'Romanian Leu',sym:'lei',rate:4.55},
+  {country:'Russia',code:'RUB',currency:'Russian Ruble',sym:'₽',rate:91.5},
+  {country:'Rwanda',code:'RWF',currency:'Rwandan Franc',sym:'FRw',rate:1290},
+  {country:'Saint Kitts & Nevis',code:'XCD',currency:'East Caribbean Dollar',sym:'$',rate:2.70},
+  {country:'Saint Lucia',code:'XCD',currency:'East Caribbean Dollar',sym:'$',rate:2.70},
+  {country:'Saint Vincent',code:'XCD',currency:'East Caribbean Dollar',sym:'$',rate:2.70},
+  {country:'Samoa',code:'WST',currency:'Samoan Tala',sym:'T',rate:2.72},
+  {country:'San Marino',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Sao Tome & Principe',code:'STN',currency:'São Tomé Dobra',sym:'Db',rate:21.5},
+  {country:'Saudi Arabia',code:'SAR',currency:'Saudi Riyal',sym:'﷼',rate:3.75},
+  {country:'Senegal',code:'XOF',currency:'West African CFA Franc',sym:'CFA',rate:600},
+  {country:'Serbia',code:'RSD',currency:'Serbian Dinar',sym:'дин',rate:110},
+  {country:'Seychelles',code:'SCR',currency:'Seychellois Rupee',sym:'₨',rate:13.8},
+  {country:'Sierra Leone',code:'SLE',currency:'Sierra Leonean Leone',sym:'Le',rate:22.8},
+  {country:'Singapore',code:'SGD',currency:'Singapore Dollar',sym:'S$',rate:1.34},
+  {country:'Slovakia',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Slovenia',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Solomon Islands',code:'SBD',currency:'Solomon Islands Dollar',sym:'$',rate:8.45},
+  {country:'Somalia',code:'SOS',currency:'Somali Shilling',sym:'Sh',rate:570},
+  {country:'South Africa',code:'ZAR',currency:'South African Rand',sym:'R',rate:18.3},
+  {country:'South Sudan',code:'SSP',currency:'South Sudanese Pound',sym:'£',rate:1050},
+  {country:'Spain',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Sri Lanka',code:'LKR',currency:'Sri Lankan Rupee',sym:'₨',rate:320},
+  {country:'Sudan',code:'SDG',currency:'Sudanese Pound',sym:'ج.س',rate:585},
+  {country:'Suriname',code:'SRD',currency:'Surinamese Dollar',sym:'$',rate:36.5},
+  {country:'Sweden',code:'SEK',currency:'Swedish Krona',sym:'kr',rate:10.5},
+  {country:'Switzerland',code:'CHF',currency:'Swiss Franc',sym:'₣',rate:0.878},
+  {country:'Syria',code:'SYP',currency:'Syrian Pound',sym:'£',rate:13000},
+  {country:'Taiwan',code:'TWD',currency:'New Taiwan Dollar',sym:'NT$',rate:31.5},
+  {country:'Tajikistan',code:'TJS',currency:'Tajikistani Somoni',sym:'ЅМ',rate:10.9},
+  {country:'Tanzania',code:'TZS',currency:'Tanzanian Shilling',sym:'TSh',rate:2520},
+  {country:'Thailand',code:'THB',currency:'Thai Baht',sym:'฿',rate:35.5},
+  {country:'Timor-Leste',code:'USD',currency:'US Dollar',sym:'$',rate:1},
+  {country:'Togo',code:'XOF',currency:'West African CFA Franc',sym:'CFA',rate:600},
+  {country:'Tonga',code:'TOP',currency:'Tongan Paʻanga',sym:'T$',rate:2.35},
+  {country:'Trinidad & Tobago',code:'TTD',currency:'Trinidad & Tobago Dollar',sym:'$',rate:6.78},
+  {country:'Tunisia',code:'TND',currency:'Tunisian Dinar',sym:'د.ت',rate:3.12},
+  {country:'Turkey',code:'TRY',currency:'Turkish Lira',sym:'₺',rate:30.2},
+  {country:'Turkmenistan',code:'TMT',currency:'Turkmen Manat',sym:'m',rate:3.50},
+  {country:'Tuvalu',code:'AUD',currency:'Australian Dollar',sym:'A$',rate:1.535},
+  {country:'Uganda',code:'UGX',currency:'Ugandan Shilling',sym:'USh',rate:3800},
+  {country:'Ukraine',code:'UAH',currency:'Ukrainian Hryvnia',sym:'₴',rate:37.8},
+  {country:'United Arab Emirates',code:'AED',currency:'UAE Dirham',sym:'د.إ',rate:3.673},
+  {country:'United Kingdom',code:'GBP',currency:'British Pound Sterling',sym:'£',rate:0.785},
+  {country:'United States',code:'USD',currency:'US Dollar',sym:'$',rate:1},
+  {country:'Uruguay',code:'UYU',currency:'Uruguayan Peso',sym:'$U',rate:39.1},
+  {country:'Uzbekistan',code:'UZS',currency:'Uzbekistani Som',sym:'soʻm',rate:12400},
+  {country:'Vanuatu',code:'VUV',currency:'Vanuatu Vatu',sym:'VT',rate:119},
+  {country:'Vatican City',code:'EUR',currency:'Euro',sym:'€',rate:0.915},
+  {country:'Venezuela',code:'VES',currency:'Venezuelan Bolívar',sym:'Bs.',rate:36.2},
+  {country:'Vietnam',code:'VND',currency:'Vietnamese Dong',sym:'₫',rate:24450},
+  {country:'Yemen',code:'YER',currency:'Yemeni Rial',sym:'﷼',rate:250},
+  {country:'Zambia',code:'ZMW',currency:'Zambian Kwacha',sym:'ZK',rate:26.5},
+  {country:'Zimbabwe',code:'ZWL',currency:'Zimbabwean Dollar',sym:'$',rate:6200},
+];
+
+// Build lookup map from the array (MUST be before populateCurrencySelector)
+const CURRENCY_MAP = {};
+CURRENCIES.forEach(c => { CURRENCY_MAP[c.code] = c; });
+
+// Now populate the header currency selector
+populateCurrencySelector();
+
+// --- Currency Converter ---
+CALCULATORS.currency = {
+  render(ct){
+    const opts=CURRENCIES.map(c=>`<option value="${c.code}">${c.country} — ${c.currency} (${c.sym})</option>`).join('');
+    ct.innerHTML=`<div class="input-card"><div class="input-card-title">💱 Convert Currency</div><div class="input-grid"><div class="input-group"><label>Amount</label><input type="number" id="curr-amt" value="1" step="any"></div><div class="input-group"><label>From</label><select id="curr-from">${opts}</select></div><div class="input-group"><label>To</label><select id="curr-to">${opts}</select></div></div><div class="btn-row"><button class="btn btn-primary" id="curr-convert">Convert</button></div></div><div id="curr-results"></div>`;
+    // Default: USD → EUR
+    $('#curr-from').value='USD';$('#curr-to').value='EUR';
+    $('#curr-convert').onclick=()=>{
+      let a=pv($('#curr-amt').value),fc=$('#curr-from').value,tc=$('#curr-to').value;
+      let from=CURRENCY_MAP[fc],to=CURRENCY_MAP[tc];
+      let r=a/from.rate*to.rate;
+      let rateVal=to.rate/from.rate;
+      $('#curr-results').innerHTML=`<div class="results-panel"><h3>Conversion</h3><div class="result-grid"><div class="result-item"><div class="label">${fmt(a,4)} ${fc}</div><div class="value">= ${to.sym}${r.toLocaleString('en-US',{minimumFractionDigits:4,maximumFractionDigits:4})}</div></div><div class="result-item"><div class="label">Exchange Rate</div><div class="value">1 ${fc} = ${to.sym}${rateVal.toLocaleString('en-US',{minimumFractionDigits:4,maximumFractionDigits:4})}</div></div></div></div>`;
+    };
+  }
+};
+
+// --- Compound Interest ---
+CALCULATORS.compound = {
+  render(ct){ct.innerHTML=`<div class="input-card"><div class="input-card-title">📈 Compound Interest</div><div class="input-grid"><div class="input-group"><label>${labelWithTip('Initial Principal','The starting amount you invest today as a lump sum.')}</label><div class="input-suffix"><input type="number" id="ci-p" value="10000" step="any"><span class="suffix">$</span></div></div><div class="input-group"><label>${labelWithTip('Monthly Contribution','How much you add to the investment each month.')}</label><div class="input-suffix"><input type="number" id="ci-m" value="500" step="any"><span class="suffix">$</span></div></div><div class="input-group"><label>${labelWithTip('Annual Rate','Expected annual return rate. E.g., 7 for 7% (historical stock market average).')}</label><div class="input-suffix"><input type="number" id="ci-r" value="7" step="any"><span class="suffix">%</span></div></div><div class="input-group"><label>${labelWithTip('Years','How many years the money will grow. Longer = dramatically more due to compounding.')}</label><input type="number" id="ci-y" value="30" step="any"></div><div class="input-group"><label>Compounding</label><select id="ci-c"><option value="1">Annually</option><option value="12" selected>Monthly</option><option value="365">Daily</option></select></div></div><div class="btn-row"><button class="btn btn-primary" id="ci-calc">Calculate</button></div></div><div id="ci-results"></div>`;$('#ci-calc').onclick=()=>{let P=pv($('#ci-p').value),M=pv($('#ci-m').value),r=pv($('#ci-r').value)/100,y=+$('#ci-y').value,c=+$('#ci-c').value,A=P*Math.pow(1+r/c,c*y),reff=Math.pow(1+r/c,c)-1,rm=Math.pow(1+reff,1/12)-1,fvC=M*((Math.pow(1+rm,y*12)-1)/rm),tot=A+fvC,contrib=P+M*12*y,int=tot-contrib;$('#ci-results').innerHTML=`<div class="results-panel"><h3>${y}-Year Projection</h3><div class="result-grid"><div class="result-item"><div class="label">Future Value</div><div class="value">${fmt(tot,0,'$')}</div></div><div class="result-item"><div class="label">Contributions</div><div class="value">${fmt(contrib,0,'$')}</div></div><div class="result-item"><div class="label">Interest Earned</div><div class="value">${fmt(int,0,'$')}</div></div><div class="result-item"><div class="label">Interest %</div><div class="value">${fmtPct(contrib>0?(int/tot)*100:0,1)}</div></div></div></div><div class="chart-wrap"><canvas id="ci-chart"></canvas></div>`;setTimeout(()=>{let canvas=$('#ci-chart');if(!canvas)return;let ctx=canvas.getContext('2d'),W=canvas.parentElement.clientWidth;canvas.width=W;canvas.height=260;let labels=[],cD=[],iD=[];for(let i=0;i<=y;i++){let Ai=P*Math.pow(1+r/c,c*i),fvi=M*((Math.pow(1+rm,i*12)-1)/rm);cD.push(P+M*12*i);iD.push(Ai+fvi-P-M*12*i);labels.push('Y'+i);}let maxV=cD[cD.length-1]+iD[iD.length-1],pad=35,cW=W-pad*2,cH=canvas.height-pad*2;ctx.clearRect(0,0,W,canvas.height);ctx.strokeStyle='rgba(255,255,255,0.05)';ctx.lineWidth=1;for(let i=0;i<=4;i++){let py=pad+(cH/4)*i;ctx.beginPath();ctx.moveTo(pad,py);ctx.lineTo(W-pad,py);ctx.stroke();}let barW=Math.min(cW/labels.length*0.6,20);for(let i=0;i<labels.length;i++){let x=pad+(cW/(labels.length-1))*i-barW/2,cH2=(cD[i]/maxV)*cH,iH2=(iD[i]/maxV)*cH;ctx.fillStyle='#6396ff';ctx.fillRect(x,pad+cH-cH2-iH2,barW,cH2);ctx.fillStyle='#4dd4c8';ctx.fillRect(x,pad+cH-cH2-iH2,barW,iH2);}},50);};}
+};
+
+// --- Loan ---
+CALCULATORS.loan = {
+  render(ct){ct.innerHTML=`<div class="input-card"><div class="input-card-title">🏦 Loan Details</div><div class="input-grid"><div class="input-group"><label>${labelWithTip('Loan Amount','The total amount you are borrowing (principal).')}</label><div class="input-suffix"><input type="number" id="loan-a" value="250000" step="any"><span class="suffix">$</span></div></div><div class="input-group"><label>${labelWithTip('Annual Rate','The annual interest rate on the loan. E.g., 6.5 for 6.5%.')}</label><div class="input-suffix"><input type="number" id="loan-r" value="6.5" step="any"><span class="suffix">%</span></div></div><div class="input-group"><label>${labelWithTip('Term (years)','How many years you will take to repay the loan.')}</label><input type="number" id="loan-t" value="30" step="any"></div><div class="input-group"><label>${labelWithTip('Extra Monthly','Any additional amount you pay each month beyond the required payment. Even small extra payments save thousands in interest.')}</label><div class="input-suffix"><input type="number" id="loan-x" value="0" step="any"><span class="suffix">$</span></div></div></div><div class="btn-row"><button class="btn btn-primary" id="loan-calc">Calculate</button><button class="btn btn-outline" id="loan-amort-btn">Show Amortization</button></div></div><div id="loan-results"></div><div id="loan-amort"></div>`;
+  let self=this;
+  $('#loan-calc').onclick=()=>{let P=pv($('#loan-a').value),r=pv($('#loan-r').value)/100/12,n=+$('#loan-t').value*12,x=pv($('#loan-x').value),pmt=P*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1),tot=pmt*n,int=tot-P;self._P=P;self._r=r;self._n=n;self._x=x;self._pmt=pmt;let bal=P,mo=0,iX=0;while(bal>0&&mo<n*2){mo++;let int1=bal*r;iX+=int1;let pr=pmt+x-int1;if(pr>bal)pr=bal;bal-=pr;if(bal<=0)break;}$('#loan-results').innerHTML=`<div class="results-panel"><h3>Loan Summary</h3><div class="result-grid"><div class="result-item"><div class="label">Monthly Payment</div><div class="value">${fmt(pmt,2,'$')}</div></div><div class="result-item"><div class="label">Total Interest</div><div class="value">${fmt(int,0,'$')}</div></div><div class="result-item"><div class="label">Total Payments</div><div class="value">${fmt(tot,0,'$')}</div></div>${x>0?`<div class="result-item"><div class="label">With Extra: Paid In</div><div class="value">${fmt(mo/12,1)} yrs</div></div><div class="result-item"><div class="label">Interest Saved</div><div class="value">${fmt(int-iX,0,'$')}</div></div>`:''}</div></div>`;};
+  $('#loan-amort-btn').onclick=()=>{if(!self._P)return;let P=self._P,r=self._r,n=self._n,x=self._x,pmt=self._pmt,bal=P,rows='';for(let i=1;i<=Math.min(n,360);i++){let int1=bal*r,pr=pmt+x-int1;if(pr>bal)pr=bal;bal-=pr;rows+=`<tr><td>${i}</td><td>${fmt(pmt+x,2,'$')}</td><td>${fmt(pr,2,'$')}</td><td>${fmt(int1,2,'$')}</td><td>${fmt(bal,2,'$')}</td></tr>`;if(bal<=0)break;}$('#loan-amort').innerHTML=`<div class="table-wrap"><div class="table-scroll"><table><thead><tr><th>#</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;};}
+};
+
+// Helper: creates a simple calculator
+function reg(id, title, inputs, fn){
+  CALCULATORS[id] = {
+    render(ct){
+      let ih=inputs.map(inp=>{
+        let lbl = inp.tip ? labelWithTip(inp.l, inp.tip) : inp.l;
+        if(inp.t==='select')return `<div class="input-group"><label>${lbl}</label><select id="${id}-${inp.i}">${inp.o.map(o=>`<option value="${o.v}" ${o.s?'selected':''}>${o.lab}</option>`).join('')}</select></div>`;
+        return `<div class="input-group"><label>${lbl}</label><div class="input-suffix"><input type="number" id="${id}-${inp.i}" value="${inp.v||''}" step="any" placeholder="${inp.ph||''}"><span class="suffix">${inp.s||''}</span></div></div>`;
+      }).join('');
+      ct.innerHTML=`<div class="input-card"><div class="input-card-title">⚙️ ${title}</div><div class="input-grid">${ih}</div><div class="btn-row"><button class="btn btn-primary" id="${id}-go">Calculate</button></div></div><div id="${id}-out"></div>`;
+      $(`#${id}-go`).onclick=()=>{
+        let vals={};inputs.forEach(inp=>{vals[inp.i]=inp.t==='select'?$(`#${id}-${inp.i}`).value:pv($(`#${id}-${inp.i}`).value);});
+        let res=fn(vals,id);
+        let rh='<div class="results-panel"><h3>Results</h3><div class="result-grid">';
+        res.forEach(r=>rh+=`<div class="result-item"><div class="label">${r.l}</div><div class="value">${r.v}</div>${r.s?`<div class="sub">${r.s}</div>`:''}</div>`);
+        rh+='</div></div>';$(`#${id}-out`).innerHTML=rh;
+      };
+    }
+  };
+}
+
+// --- Register all simple calculators ---
+reg('roi','Return on Investment',[{i:'invested',l:'Initial Investment',s:'$',v:'10000',tip:'The total amount you initially invested.'},{i:'returned',l:'Final Value',s:'$',v:'15000',tip:'The total value of your investment at the end (including any income received).'},{i:'years',l:'Years',v:'3',tip:'How many years you held the investment.'}],(v)=>[{l:'Total ROI',v:fmtPct((v.returned-v.invested)/v.invested*100,2)},{l:'Annualized ROI',v:fmtPct((Math.pow(v.returned/v.invested,1/v.years)-1)*100,2)},{l:'Gain',v:fmt(v.returned-v.invested,2,'$')}]);
+
+reg('irrnpv','IRR & NPV',[{i:'initial',l:'Initial Investment',s:'$',v:'-10000'},{i:'rate',l:'Discount Rate',s:'%',v:'10'},{i:'flows',l:'Cash Flows (comma-sep)',ph:'3000,4000,5000',v:'3000,4000,5000,4000,3000'}],(v)=>{
+  let init=pv(String(v.initial)),rate=v.rate/100,flows=String(v.flows).split(/[,;\s]+/).map(s=>pv(s)).filter(n=>!isNaN(n));
+  let npv=init;flows.forEach((cf,i)=>npv+=cf/Math.pow(1+rate,i+1));
+  function npvAt(rr){let val=init;flows.forEach((cf,i)=>val+=cf/Math.pow(1+rr,i+1));return val;}
+  let irr=0.1;for(let i=0;i<200;i++){let f=npvAt(irr),fp=npvAt(irr+0.0001)-f;if(Math.abs(fp)<1e-15)break;let d=f/(fp/0.0001);irr-=d;if(Math.abs(d)<1e-10||irr<=-0.99||irr>10)break;}
+  return[{l:'NPV',v:fmt(npv,2,'$'),s:npv>0?'✅ Value-adding':'⚠️ Negative'},{l:'IRR',v:irr>0&&irr<10?fmtPct(irr*100,2):'N/A'},{l:'Net Cash Flow',v:fmt(init+flows.reduce((a,b)=>a+b,0),2,'$')}];
+});
+
+reg('bond','Bond Calculator',[{i:'fv',l:'Face Value',s:'$',v:'1000'},{i:'coupon',l:'Coupon Rate',s:'%',v:'5'},{i:'ytm',l:'Market Rate (YTM)',s:'%',v:'6'},{i:'years',l:'Years to Maturity',v:'10'},{i:'freq',l:'Payments/Year',t:'select',o:[{v:'2',l:'Semi-annual',s:true},{v:'1',l:'Annual'},{v:'4',l:'Quarterly'}]}],(v)=>{
+  let fv=v.fv,c=v.fv*v.coupon/100/v.freq,r=v.ytm/100/v.freq,n=v.years*v.freq,price=0;
+  for(let i=1;i<=n;i++)price+=c/Math.pow(1+r,i);price+=fv/Math.pow(1+r,n);
+  return[{l:'Bond Price',v:fmt(price,2,'$'),s:price>fv?'Premium':'Discount'},{l:'Current Yield',v:fmtPct(fv*v.coupon/100/price*100,2)},{l:'YTM',v:fmtPct(v.ytm,2)}];
+});
+
+reg('rule72','Rule of 72',[{i:'rate',l:'Interest Rate',s:'%',v:'8'}],(v)=>[{l:'Years to Double (Rule of 72)',v:fmt(72/v.rate,1)+' yrs'},{l:'Exact Years',v:fmt(Math.log(2)/Math.log(1+v.rate/100),1)+' yrs'}]);
+
+reg('taxequiv','Tax Equivalent Yield',[{i:'taxfree',l:'Tax-Free Yield',s:'%',v:'3.5'},{i:'taxrate',l:'Tax Bracket',s:'%',v:'32'}],(v)=>[{l:'Tax Equivalent Yield',v:fmtPct(v.taxfree/(1-v.taxrate/100),2)}]);
+
+reg('college','College Savings',[{i:'cost',l:'Annual Cost Today',s:'$',v:'30000'},{i:'years',l:'Years Until College',v:'15'},{i:'inflation',l:'Education Inflation',s:'%',v:'5'},{i:'yrsCollege',l:'Years of College',v:'4'},{i:'savings',l:'Current Savings',s:'$',v:'10000'},{i:'return',l:'Expected Return',s:'%',v:'6'}],(v)=>{
+  let fc=v.cost*Math.pow(1+v.inflation/100,v.years),tc=fc*v.yrsCollege,r=v.return/100/12,n=v.years*12,fvs=v.savings*Math.pow(1+r,n),need=tc-fvs,mo=r>0?need*r/(Math.pow(1+r,n)-1):need/n;
+  return[{l:'Future Annual Cost',v:fmt(fc,2,'$')},{l:'Total Cost',v:fmt(tc,2,'$')},{l:'Monthly Savings Needed',v:fmt(Math.max(0,mo),2,'$')}];
+});
+
+reg('savings-goal','Savings Goal',[{i:'goal',l:'Goal Amount',s:'$',v:'50000'},{i:'current',l:'Current Savings',s:'$',v:'5000'},{i:'rate',l:'Interest Rate',s:'%',v:'5'},{i:'years',l:'Years',v:'5'}],(v)=>{
+  let r=v.rate/100/12,n=v.years*12,fvC=v.current*Math.pow(1+r,n),need=v.goal-fvC,mo=r>0?need*r/(Math.pow(1+r,n)-1):need/n;
+  return[{l:'Monthly Deposit',v:fmt(Math.max(0,mo),2,'$')},{l:'Current Savings FV',v:fmt(fvC,2,'$')}];
+});
+
+reg('cd','CD Calculator',[{i:'principal',l:'Deposit',s:'$',v:'10000'},{i:'rate',l:'APY',s:'%',v:'5'},{i:'term',l:'Term (months)',v:'12'},{i:'comp',l:'Compounding',t:'select',o:[{v:'1',l:'Annually'},{v:'4',l:'Quarterly'},{v:'12',l:'Monthly',s:true},{v:'365',l:'Daily'}]}],(v)=>{
+  let t=v.term/12,c=+v.comp,fv=v.principal*Math.pow(1+v.rate/100/c,c*t);
+  return[{l:'Maturity Value',v:fmt(fv,2,'$')},{l:'Interest',v:fmt(fv-v.principal,2,'$')}];
+});
+
+reg('investment-income','Investment Income',[{i:'principal',l:'Portfolio Value',s:'$',v:'500000'},{i:'yield',l:'Annual Yield',s:'%',v:'4'},{i:'growth',l:'Growth',s:'%',v:'3'}],(v)=>[{l:'Annual Income',v:fmt(v.principal*v.yield/100,2,'$')},{l:'Monthly Income',v:fmt(v.principal*v.yield/100/12,2,'$')}]);
+
+reg('mutual-fund','Mutual Fund Fee Impact',[{i:'principal',l:'Initial Investment',s:'$',v:'100000'},{i:'monthly',l:'Monthly Contribution',s:'$',v:'1000'},{i:'return',l:'Gross Return',s:'%',v:'8'},{i:'fee',l:'Expense Ratio',s:'%',v:'1.0'},{i:'years',l:'Years',v:'30'}],(v)=>{
+  let rg=v.return/100,rn=(v.return-v.fee)/100,n=v.years,rmg=Math.pow(1+rg,1/12)-1,rmn=Math.pow(1+rn,1/12)-1;
+  let fg=v.principal*Math.pow(1+rg,n)+v.monthly*((Math.pow(1+rmg,n*12)-1)/rmg);
+  let fn=v.principal*Math.pow(1+rn,n)+v.monthly*((Math.pow(1+rmn,n*12)-1)/rmn);
+  return[{l:'Without Fees',v:fmt(fg,0,'$')},{l:'With Fees',v:fmt(fn,0,'$')},{l:'Lost to Fees',v:fmt(fg-fn,0,'$'),s:fmtPct((fg-fn)/fg*100,1)+' of returns'}];
+});
+
+reg('hsa','HSA Calculator',[{i:'contrib',l:'Annual Contribution',s:'$',v:'4150'},{i:'years',l:'Years',v:'20'},{i:'return',l:'Annual Return',s:'%',v:'7'},{i:'tax',l:'Tax Bracket',s:'%',v:'24'}],(v)=>{
+  let r=v.return/100,n=v.years,fv=v.contrib*((Math.pow(1+r,n)-1)/r);
+  return[{l:'HSA Balance',v:fmt(fv,0,'$')},{l:'Tax Savings',v:fmt(v.contrib*v.tax/100*n,0,'$')},{l:'Tax-Free Growth',v:fmt(fv-v.contrib*n,0,'$')}];
+});
+
+reg('apr','APR Calculator',[{i:'loan',l:'Loan Amount',s:'$',v:'200000'},{i:'rate',l:'Nominal Rate',s:'%',v:'6.0'},{i:'term',l:'Term (yrs)',v:'30'},{i:'fees',l:'Upfront Fees',s:'$',v:'3000'}],(v)=>{
+  let P=v.loan,r=v.rate/100/12,n=v.term*12,fees=v.fees,pmt=P*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1),net=P-fees;
+  function fApr(apr){let rm=apr/12;return net*(rm*Math.pow(1+rm,n))/(Math.pow(1+rm,n)-1)-pmt;}
+  let apr=v.rate/100+0.01;for(let i=0;i<100;i++){let fx=fApr(apr),fpx=(fApr(apr+0.0001)-fx)/0.0001;apr-=fx/fpx;if(Math.abs(fx)<1e-10)break;}
+  return[{l:'Monthly Payment',v:fmt(pmt,2,'$')},{l:'True APR',v:fmtPct(apr*100,3)},{l:'Effective Loan',v:fmt(net,2,'$')}];
+});
+
+reg('loan-compare','Loan Comparison',[{i:'amt1',l:'Loan 1 Amount',s:'$',v:'250000'},{i:'rate1',l:'Loan 1 Rate',s:'%',v:'6.5'},{i:'term1',l:'Loan 1 Term (yrs)',v:'30'},{i:'amt2',l:'Loan 2 Amount',s:'$',v:'250000'},{i:'rate2',l:'Loan 2 Rate',s:'%',v:'5.5'},{i:'term2',l:'Loan 2 Term (yrs)',v:'15'}],(v)=>{
+  let li=(a,rt,t)=>{let rr=rt/100/12,nn=t*12,pm=a*(rr*Math.pow(1+rr,nn))/(Math.pow(1+rr,nn)-1);return{pm,tot:pm*nn,int:pm*nn-a};};
+  let l1=li(v.amt1,v.rate1,v.term1),l2=li(v.amt2,v.rate2,v.term2);
+  return[{l:'Loan 1 Monthly',v:fmt(l1.pm,2,'$')},{l:'Loan 2 Monthly',v:fmt(l2.pm,2,'$')},{l:'Loan 1 Interest',v:fmt(l1.int,0,'$')},{l:'Loan 2 Interest',v:fmt(l2.int,0,'$')},{l:'Savings',v:fmt(l1.tot-l2.tot,0,'$'),s:l1.tot>l2.tot?'✅ Loan 2 wins':'Loan 1 wins'}];
+});
+
+reg('loan-refinance','Refinance Analysis',[{i:'balance',l:'Remaining Balance',s:'$',v:'200000'},{i:'oldRate',l:'Current Rate',s:'%',v:'6.5'},{i:'oldTerm',l:'Remaining Term (yrs)',v:'25'},{i:'newRate',l:'New Rate',s:'%',v:'5.0'},{i:'newTerm',l:'New Term (yrs)',v:'30'},{i:'closing',l:'Closing Costs',s:'$',v:'4000'}],(v)=>{
+  let li=(a,rt,t)=>{let rr=rt/100/12,nn=t*12,pm=a*(rr*Math.pow(1+rr,nn))/(Math.pow(1+rr,nn)-1);return{pm,tot:pm*nn};};
+  let o=li(v.balance,v.oldRate,v.oldTerm),n=li(v.balance+v.closing,v.newRate,v.newTerm),sav=o.pm-n.pm,be=sav>0?Math.ceil(v.closing/sav):null;
+  return[{l:'Old Payment',v:fmt(o.pm,2,'$')},{l:'New Payment',v:fmt(n.pm,2,'$')},{l:'Monthly Savings',v:fmt(sav,2,'$')},{l:'Breakeven',v:be?`${be} months (${fmt(be/12,1)} yrs)`:'Never'}];
+});
+
+reg('apr-advanced','APR Advanced',[{i:'loan',l:'Loan Amount',s:'$',v:'300000'},{i:'rate',l:'Nominal Rate',s:'%',v:'6.5'},{i:'term',l:'Term (yrs)',v:'30'},{i:'origFee',l:'Origination Fee',s:'%',v:'1'},{i:'points',l:'Discount Points',s:'%',v:'0'},{i:'otherFees',l:'Other Fees',s:'$',v:'3000'}],(v)=>{
+  let P=v.loan,r=v.rate/100/12,n=v.term*12,pmt=P*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1),fees=P*v.origFee/100+P*v.points/100+v.otherFees,net=P-fees;
+  function fApr(apr){let rm=apr/12;return net*(rm*Math.pow(1+rm,n))/(Math.pow(1+rm,n)-1)-pmt;}
+  let apr=v.rate/100+0.01;for(let i=0;i<100;i++){let fx=fApr(apr),fpx=(fApr(apr+0.0001)-fx)/0.0001;apr-=fx/fpx;if(Math.abs(fx)<1e-10)break;}
+  return[{l:'Monthly Payment',v:fmt(pmt,2,'$')},{l:'Total Fees',v:fmt(fees,2,'$')},{l:'True APR',v:fmtPct(apr*100,3)}];
+});
+
+reg('commercial','Commercial Loan',[{i:'loan',l:'Loan Amount',s:'$',v:'500000'},{i:'rate',l:'Rate',s:'%',v:'7'},{i:'amort',l:'Amortization (yrs)',v:'20'},{i:'balloon',l:'Balloon Due (yrs)',v:'10'}],(v)=>{
+  let r=v.rate/100/12,na=v.amort*12,nb=(v.balloon||v.amort)*12,pmt=v.loan*(r*Math.pow(1+r,na))/(Math.pow(1+r,na)-1),bal=v.loan;
+  for(let i=0;i<Math.min(nb,na);i++){let int=bal*r,pr=pmt-int;if(pr>bal)pr=bal;bal-=pr;}
+  return[{l:'Monthly Payment',v:fmt(pmt,2,'$')},{l:'Balloon Payment',v:fmt(Math.max(0,bal),2,'$'),s:bal>0?'Due at term end':'Fully amortized'}];
+});
+
+reg('loan-analysis','Loan Analysis',[{i:'loan',l:'Loan Amount',s:'$',v:'250000'},{i:'rate',l:'Rate',s:'%',v:'6.5'},{i:'term',l:'Term (yrs)',v:'30'},{i:'extra',l:'Extra Monthly',s:'$',v:'200'},{i:'onetime',l:'One-time Extra (yr 1)',s:'$',v:'5000'}],(v)=>{
+  let r=v.rate/100/12,n=v.term*12,std=v.loan*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1),stdTot=std*n,stdInt=stdTot-v.loan,bal=v.loan,m=0,iP=0;
+  for(let i=0;i<n;i++){if(i===11)bal-=v.onetime;if(bal<=0)break;m++;let int=bal*r;iP+=int;let pr=std+v.extra-int;if(pr>bal)pr=bal;bal-=pr;}
+  return[{l:'Standard Payment',v:fmt(std,2,'$')},{l:'Standard Interest',v:fmt(stdInt,0,'$')},{l:'With Extras: Paid In',v:`${m} months (${fmt(m/12,1)} yrs)`},{l:'Interest Saved',v:fmt(stdInt-iP,0,'$')}];
+});
+
+reg('home-afford','Home Affordability',[{i:'income',l:'Annual Income',s:'$',v:'100000'},{i:'debts',l:'Monthly Debts',s:'$',v:'500'},{i:'down',l:'Down Payment',s:'$',v:'50000'},{i:'rate',l:'Mortgage Rate',s:'%',v:'6.5'},{i:'tax',l:'Property Tax Rate',s:'%',v:'1.2'},{i:'insurance',l:'Annual Insurance',s:'$',v:'1200'}],(v)=>{
+  let mi=v.income/12,maxPITI=mi*0.28,maxDebt=Math.min(maxPITI,mi*0.36-v.debts),r=v.rate/100/12,maxPI=Math.max(0,maxDebt-v.tax/100/12-v.insurance/12),maxLoan=maxPI>0?maxPI*(1-Math.pow(1+r,-360))/r:0;
+  return[{l:'Max Home Price',v:fmt(maxLoan+v.down,0,'$')},{l:'Max Loan',v:fmt(maxLoan,0,'$')},{l:'Max Monthly PITI',v:fmt(maxPITI,2,'$')}];
+});
+
+reg('rent-vs-buy','Rent vs Buy',[{i:'homePrice',l:'Home Price',s:'$',v:'400000'},{i:'down',l:'Down Payment',s:'$',v:'80000'},{i:'rate',l:'Mortgage Rate',s:'%',v:'6.5'},{i:'rent',l:'Monthly Rent',s:'$',v:'2200'},{i:'years',l:'Years Staying',v:'7'},{i:'appreciation',l:'Appreciation',s:'%',v:'3'},{i:'rentIncrease',l:'Rent Increase/yr',s:'%',v:'3'}],(v)=>{
+  let r=v.rate/100/12,loan=v.homePrice-v.down,pmt=loan*(r*Math.pow(1+r,360))/(Math.pow(1+r,360)-1);
+  let rentC=0,cr=v.rent;for(let i=0;i<v.years;i++){rentC+=cr*12;cr*=(1+v.rentIncrease/100);}
+  let bal=loan,iP=0;for(let i=0;i<v.years*12;i++){let int=bal*r;iP+=int;bal-=(pmt-int);}
+  let buyC=v.down+iP+pmt*v.years*12,homeFV=v.homePrice*Math.pow(1+v.appreciation/100,v.years),buyNet=homeFV-buyC-bal;
+  return[{l:'Buying: Net Cost',v:fmt(buyNet,0,'$'),s:buyNet>-rentC?'✅ Better':'—'},{l:'Renting: Net Cost',v:fmt(-rentC,0,'$'),s:-rentC>buyNet?'✅ Better':'—'},{l:'Home Value',v:fmt(homeFV,0,'$')}];
+});
+
+reg('mortgage-tax','Mortgage Tax Savings',[{i:'loan',l:'Loan Amount',s:'$',v:'300000'},{i:'rate',l:'Rate',s:'%',v:'6.5'},{i:'tax',l:'Tax Bracket',s:'%',v:'24'},{i:'propTax',l:'Annual Property Tax',s:'$',v:'4800'}],(v)=>{
+  let annInt=v.loan*v.rate/100,total=annInt+v.propTax,saved=total*v.tax/100;
+  return[{l:'Annual Tax Savings',v:fmt(saved,2,'$')},{l:'Monthly Tax Savings',v:fmt(saved/12,2,'$')},{l:'Total Deduction',v:fmt(total,2,'$')}];
+});
+
+reg('discount-points','Discount Points',[{i:'loan',l:'Loan Amount',s:'$',v:'300000'},{i:'rate',l:'Base Rate',s:'%',v:'6.5'},{i:'points',l:'Points to Buy',v:'1'},{i:'rateReduction',l:'Rate Drop per Point',s:'%',v:'0.25'}],(v)=>{
+  let r1=v.rate/100/12,pmt1=v.loan*(r1*Math.pow(1+r1,360))/(Math.pow(1+r1,360)-1),nr=(v.rate-v.points*v.rateReduction)/100/12,pmt2=v.loan*(nr*Math.pow(1+nr,360))/(Math.pow(1+nr,360)-1),cost=v.loan*v.points/100,save=pmt1-pmt2,be=Math.ceil(cost/save);
+  return[{l:'Cost of Points',v:fmt(cost,2,'$')},{l:'Payment With Points',v:fmt(pmt2,2,'$')},{l:'Monthly Savings',v:fmt(save,2,'$')},{l:'Breakeven',v:`${be} months (${fmt(be/12,1)} yrs)`}];
+});
+
+reg('arm','Adjustable Rate Mortgage',[{i:'loan',l:'Loan Amount',s:'$',v:'300000'},{i:'initialRate',l:'Initial Rate',s:'%',v:'4.5'},{i:'fixedYears',l:'Fixed Period (yrs)',v:'5'},{i:'indexRate',l:'Index Rate',s:'%',v:'4.0'},{i:'margin',l:'Margin',s:'%',v:'2.5'},{i:'cap',l:'Periodic Cap',s:'%',v:'2'},{i:'lifetimeCap',l:'Lifetime Cap',s:'%',v:'5'}],(v)=>{
+  let fullRate=v.indexRate+v.margin,adjRate=Math.min(fullRate,Math.min(v.initialRate+v.cap,v.initialRate+v.lifetimeCap)),rInit=v.initialRate/100/12,pmt1=v.loan*(rInit*Math.pow(1+rInit,360))/(Math.pow(1+rInit,360)-1),bal=v.loan;
+  for(let i=0;i<v.fixedYears*12;i++){let int=bal*rInit;bal-=(pmt1-int);}
+  let rAdj=adjRate/100/12,rem=360-v.fixedYears*12,pmt2=bal*(rAdj*Math.pow(1+rAdj,rem))/(Math.pow(1+rAdj,rem)-1);
+  return[{l:'Initial Payment',v:fmt(pmt1,2,'$'),s:`First ${v.fixedYears} yrs`},{l:'Adjusted Rate',v:fmtPct(adjRate,2)},{l:'Adjusted Payment',v:fmt(pmt2,2,'$')},{l:'Payment Jump',v:fmt(pmt2-pmt1,2,'$')}];
+});
+
+reg('fixed-vs-arm','Fixed vs ARM',[{i:'loan',l:'Loan Amount',s:'$',v:'300000'},{i:'fixedRate',l:'Fixed Rate',s:'%',v:'6.5'},{i:'armRate',l:'ARM Initial Rate',s:'%',v:'4.5'},{i:'armAdjTo',l:'ARM Adjusted Rate',s:'%',v:'6.5'},{i:'fixedYears',l:'ARM Fixed Period',v:'5'},{i:'yearsStay',l:'Years You Stay',v:'10'}],(v)=>{
+  let rF=v.fixedRate/100/12,pmtF=v.loan*(rF*Math.pow(1+rF,360))/(Math.pow(1+rF,360)-1),rA1=v.armRate/100/12,pmtA1=v.loan*(rA1*Math.pow(1+rA1,360))/(Math.pow(1+rA1,360)-1),balA=v.loan;
+  for(let i=0;i<v.fixedYears*12;i++){let int=balA*rA1;balA-=(pmtA1-int);}
+  let rA2=v.armAdjTo/100/12,rem=360-v.fixedYears*12,pmtA2=balA*(rA2*Math.pow(1+rA2,rem))/(Math.pow(1+rA2,rem)-1);
+  let costF=0,balF=v.loan;for(let i=0;i<v.yearsStay*12;i++){let int=balF*rF;balF-=(pmtF-int);costF+=pmtF;}
+  let costA=0;balA=v.loan;for(let i=0;i<v.yearsStay*12;i++){let r_=i<v.fixedYears*12?rA1:rA2,pm=i<v.fixedYears*12?pmtA1:pmtA2,int=balA*r_;balA-=(pm-int);costA+=pm;}
+  return[{l:'Fixed Total',v:fmt(costF,0,'$')},{l:'ARM Total',v:fmt(costA,0,'$')},{l:'Winner',v:costF<costA?'Fixed Rate':'ARM',s:`Saves ${fmt(Math.abs(costF-costA),0,'$')}`}];
+});
+
+reg('biweekly','Bi-weekly Payments',[{i:'loan',l:'Loan Amount',s:'$',v:'300000'},{i:'rate',l:'Rate',s:'%',v:'6.5'},{i:'term',l:'Term (yrs)',v:'30'}],(v)=>{
+  let r=v.rate/100/12,n=v.term*12,mo=v.loan*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1),bw=mo/2,rB=r*12/26;
+  let balB=v.loan,b=0;for(let i=0;i<n*2.2;i++){let int=balB*rB;balB-=(bw-int);b++;if(balB<=0)break;}
+  return[{l:'Monthly Payment',v:fmt(mo,2,'$')},{l:'Bi-weekly Payment',v:fmt(bw,2,'$')},{l:'Paid Off In',v:`${Math.floor(b/26*12)} months (${fmt(b/26,1)} yrs)`},{l:'Interest Saved',v:fmt(mo*n-bw*b,0,'$')}];
+});
+
+reg('interest-only','Interest Only Loan',[{i:'loan',l:'Loan Amount',s:'$',v:'400000'},{i:'rate',l:'Rate',s:'%',v:'6'},{i:'ioYears',l:'IO Period (yrs)',v:'5'},{i:'totalTerm',l:'Total Term (yrs)',v:'30'}],(v)=>{
+  let r=v.rate/100/12,ioMo=v.ioYears*12,ioPmt=v.loan*r,remMo=(v.totalTerm-v.ioYears)*12,amPmt=remMo>0?v.loan*(r*Math.pow(1+r,remMo))/(Math.pow(1+r,remMo)-1):0;
+  return[{l:'IO Payment',v:fmt(ioPmt,2,'$'),s:`First ${v.ioYears} yrs`},{l:'Amortizing Payment',v:fmt(amPmt,2,'$')},{l:'Payment Jump',v:fmt(amPmt-ioPmt,2,'$')}];
+});
+
+reg('rental-property','Rental Property',[{i:'price',l:'Purchase Price',s:'$',v:'300000'},{i:'down',l:'Down Payment',s:'$',v:'60000'},{i:'rate',l:'Mortgage Rate',s:'%',v:'6.5'},{i:'rent',l:'Monthly Rent',s:'$',v:'2500'},{i:'expenses',l:'Monthly Expenses',s:'$',v:'800'},{i:'vacancy',l:'Vacancy Rate',s:'%',v:'5'}],(v)=>{
+  let loan=v.price-v.down,r=v.rate/100/12,pmt=loan*(r*Math.pow(1+r,360))/(Math.pow(1+r,360)-1),effRent=v.rent*(1-v.vacancy/100),cf=effRent-pmt-v.expenses,coc=cf*12/v.down*100;
+  return[{l:'Monthly Cash Flow',v:fmt(cf,2,'$'),s:cf>0?'✅ Positive':'⚠️ Negative'},{l:'Cash-on-Cash Return',v:fmtPct(coc,2)},{l:'Cap Rate',v:fmtPct((effRent*12-v.expenses*12)/v.price*100,2)}];
+});
+
+reg('retirement-planner','Retirement Planner',[{i:'age',l:'Current Age',v:'30'},{i:'retire',l:'Retirement Age',v:'65'},{i:'life',l:'Life Expectancy',v:'90'},{i:'savings',l:'Current Savings',s:'$',v:'50000'},{i:'contrib',l:'Monthly Contribution',s:'$',v:'1000'},{i:'return',l:'Pre-retire Return',s:'%',v:'7'},{i:'return2',l:'Retirement Return',s:'%',v:'4'},{i:'income',l:'Desired Monthly Income',s:'$',v:'5000'}],(v)=>{
+  let r1=v.return/100/12,r2=v.return2/100/12,workM=(v.retire-v.age)*12,retM=(v.life-v.retire)*12,fv=v.savings*Math.pow(1+r1,workM);
+  if(r1>0)fv+=v.contrib*((Math.pow(1+r1,workM)-1)/r1);else fv+=v.contrib*workM;
+  let sus=r2>0?fv*r2/(1-Math.pow(1+r2,-retM)):fv/retM,need=r2>0?v.income*(1-Math.pow(1+r2,-retM))/r2:v.income*retM,short=Math.max(0,need-fv),extra=short>0&&r1>0?short*r1/(Math.pow(1+r1,workM)-1):0;
+  return[{l:'Savings at Retirement',v:fmt(fv,0,'$')},{l:'Sustainable Income',v:fmt(sus,2,'$')+'/mo'},{l:'Shortfall',v:fmt(short,0,'$')},{l:'Extra Monthly Needed',v:fmt(extra,2,'$')}];
+});
+
+reg('401k-contribution','401(k) Contribution',[{i:'salary',l:'Annual Salary',s:'$',v:'75000'},{i:'pct',l:'Your Contribution %',s:'%',v:'10'},{i:'match',l:'Employer Match %',s:'%',v:'50'},{i:'matchLimit',l:'Match Up To %',s:'%',v:'6'},{i:'bal',l:'Current Balance',s:'$',v:'25000'},{i:'years',l:'Years to Retirement',v:'30'},{i:'return',l:'Annual Return',s:'%',v:'7'}],(v)=>{
+  let r=v.return/100/12,n=v.years*12,your=v.salary*v.pct/100/12,emp=v.salary*Math.min(v.pct,v.matchLimit)/100*v.match/100/12,tot=your+emp;
+  let fv=v.bal*Math.pow(1+r,n);if(r>0)fv+=tot*((Math.pow(1+r,n)-1)/r);else fv+=tot*n;
+  return[{l:'Projected Balance',v:fmt(fv,0,'$')},{l:'Employer Match',v:fmt(emp*12,2,'$')+'/yr'},{l:'Your Contribution',v:fmt(your*12,2,'$')+'/yr'}];
+});
+
+reg('401k-max','401(k) Save the Max',[{i:'salary',l:'Annual Salary',s:'$',v:'100000'},{i:'currentPct',l:'Current Contribution %',s:'%',v:'6'},{i:'maxAmt',l:'Annual Max Limit',s:'$',v:'23500'},{i:'years',l:'Years',v:'30'},{i:'return',l:'Return',s:'%',v:'7'},{i:'match',l:'Employer Match %',s:'%',v:'50'},{i:'matchLimit',l:'Match Up To %',s:'%',v:'6'}],(v)=>{
+  let r=v.return/100/12,n=v.years*12,cur=v.salary*v.currentPct/100/12,curM=v.salary*Math.min(v.currentPct,v.matchLimit)/100*v.match/100/12,fvCur=(cur+curM)*((Math.pow(1+r,n)-1)/r);
+  let maxM=v.salary*v.matchLimit/100*v.match/100/12,fvMax=(v.maxAmt/12+maxM)*((Math.pow(1+r,n)-1)/r);
+  return[{l:'Current: Balance',v:fmt(fvCur,0,'$')},{l:'Maxing Out: Balance',v:fmt(fvMax,0,'$')},{l:'Difference',v:fmt(fvMax-fvCur,0,'$')}];
+});
+
+reg('retirement-savings','Retirement Savings Analysis',[{i:'age',l:'Current Age',v:'35'},{i:'retire',l:'Retirement Age',v:'65'},{i:'savings',l:'Current Savings',s:'$',v:'100000'},{i:'monthly',l:'Monthly Contribution',s:'$',v:'1500'},{i:'return',l:'Expected Return',s:'%',v:'7'},{i:'income',l:'Desired Income',s:'$',v:'60000'},{i:'swr',l:'Withdrawal Rate',s:'%',v:'4'}],(v)=>{
+  let r=v.return/100/12,n=(v.retire-v.age)*12,fv=v.savings*Math.pow(1+r,n);if(r>0)fv+=v.monthly*((Math.pow(1+r,n)-1)/r);
+  let sus=fv*v.swr/100,need=v.income/v.swr*100;
+  return[{l:'Savings at Retirement',v:fmt(fv,0,'$')},{l:'Sustainable Income',v:fmt(sus,0,'$')+'/yr'},{l:'Status',v:sus>=v.income?'✅ On Track':'⚠️ Shortfall',s:Math.abs(sus-v.income)>0?`${sus>=v.income?'Surplus':'Shortfall'}: ${fmt(Math.abs(sus-v.income),0,'$')}`:''}];
+});
+
+reg('retirement-income','Retirement Income Analysis',[{i:'savings',l:'Retirement Savings',s:'$',v:'1000000'},{i:'ss',l:'Monthly Social Security',s:'$',v:'2200'},{i:'pension',l:'Monthly Pension',s:'$',v:'500'},{i:'swr',l:'Withdrawal Rate',s:'%',v:'4'}],(v)=>[{l:'From Savings',v:fmt((v.savings*v.swr/100)/12,2,'$')+'/mo'},{l:'Total Monthly Income',v:fmt((v.savings*v.swr/100)/12+v.ss+v.pension,2,'$')}]);
+
+reg('ira-roth','Traditional vs Roth IRA',[{i:'contrib',l:'Annual Contribution',s:'$',v:'7000'},{i:'years',l:'Years',v:'30'},{i:'return',l:'Return',s:'%',v:'7'},{i:'taxNow',l:'Current Tax Rate',s:'%',v:'24'},{i:'taxRetire',l:'Retirement Tax Rate',s:'%',v:'22'}],(v)=>{
+  let r=v.return/100,n=v.years,fv=v.contrib*((Math.pow(1+r,n)-1)/r),tradAT=fv*(1-v.taxRetire/100),rothAT=fv;
+  return[{l:'Traditional (after tax)',v:fmt(tradAT,0,'$')},{l:'Roth (tax-free)',v:fmt(rothAT,0,'$')},{l:'Winner',v:tradAT>rothAT?'Traditional IRA':'Roth IRA',s:`by ${fmt(Math.abs(tradAT-rothAT),0,'$')}`}];
+});
+
+reg('rmd','Required Minimum Distribution',[{i:'balance',l:'Account Balance',s:'$',v:'500000'},{i:'age',l:'Your Age',v:'75'}],(v)=>{
+  let tbl={72:27.4,73:26.5,74:25.5,75:24.6,76:23.7,77:22.9,78:22.0,79:21.1,80:20.2,81:19.4,82:18.5,83:17.7,84:16.8,85:16.0,86:15.2,87:14.4,88:13.7,89:12.9,90:12.2},factor=tbl[Math.round(v.age)]||(27.4-(v.age-72)*0.9),rmd=v.balance/factor;
+  return[{l:'RMD Amount',v:fmt(rmd,2,'$')},{l:'Monthly RMD',v:fmt(rmd/12,2,'$')},{l:'Distribution Period',v:fmt(factor,1)+' yrs'}];
+});
+
+reg('social-security','Social Security Estimator',[{i:'earnings',l:'Avg Annual Earnings',s:'$',v:'70000'},{i:'claimAge',l:'Claiming Age',v:'67'}],(v)=>{
+  let pia=v.earnings*0.4/12,benefit;if(v.claimAge<67)benefit=pia*(1-(67-v.claimAge)*0.06);else if(v.claimAge===67)benefit=pia;else benefit=pia*(1+(v.claimAge-67)*0.08);
+  return[{l:'Monthly Benefit',v:fmt(Math.max(0,benefit),2,'$')},{l:'Annual Benefit',v:fmt(Math.max(0,benefit*12),2,'$')}];
+});
+
+reg('social-security-analysis','Social Security Analysis',[{i:'pia',l:'Monthly PIA at FRA',s:'$',v:'2200'},{i:'lifeExp',l:'Life Expectancy',v:'85'}],(v)=>{
+  let cb=a=>{if(a<67)return v.pia*(1-(67-a)*0.06);if(a===67)return v.pia;return v.pia*(1+(a-67)*0.08);};
+  let tot=(b,s)=>{let t=0;for(let a=s;a<=v.lifeExp;a++)t+=b*12;return t;},t62=tot(cb(62),62),t67=tot(cb(67),67),t70=tot(cb(70),70),best=Math.max(t62,t67,t70);
+  return[{l:'Age 62',v:fmt(t62,0,'$'),s:`${fmt(cb(62),2,'$')}/mo`},{l:'Age 67',v:fmt(t67,0,'$'),s:`${fmt(cb(67),2,'$')}/mo`},{l:'Age 70',v:fmt(t70,0,'$'),s:`${fmt(cb(70),2,'$')}/mo`},{l:'Best',v:best===t62?'62':best===t67?'67':'70'}];
+});
+
+reg('social-security-dist','Social Security Distribution',[{i:'pia',l:'Monthly PIA',s:'$',v:'2200'},{i:'claimAge',l:'Claiming Age',v:'67'},{i:'years',l:'Years to Project',v:'20'}],(v)=>{
+  let cb=a=>{if(a<67)return v.pia*(1-(67-a)*0.06);if(a===67)return v.pia;return v.pia*(1+(a-67)*0.08);},b=cb(v.claimAge);
+  return[{l:'Monthly Benefit',v:fmt(b,2,'$')},{l:'Total Over '+v.years+' yrs',v:fmt(b*12*v.years,0,'$')}];
+});
+
+reg('asset-allocation','Asset Allocation',[{i:'age',l:'Your Age',v:'40'},{i:'risk',l:'Risk Tolerance',t:'select',o:[{v:'1',l:'Very Conservative'},{v:'2',l:'Conservative'},{v:'3',l:'Moderate',s:true},{v:'4',l:'Aggressive'},{v:'5',l:'Very Aggressive'}]}],(v)=>{
+  let risk=+v.risk,stock=Math.min(90,Math.max(20,(120-v.age)+(risk-3)*10)),bonds=Math.min(80,Math.max(5,100-stock-(risk>3?5:15))),cash=100-stock-bonds;
+  return[{l:'Stocks',v:fmtPct(stock,0)},{l:'Bonds',v:fmtPct(bonds,0)},{l:'Cash',v:fmtPct(cash,0)}];
+});
+
+reg('retirement-income-calc','Retirement Income',[{i:'nestEgg',l:'Nest Egg',s:'$',v:'1000000'},{i:'swr',l:'Withdrawal Rate',s:'%',v:'4'}],(v)=>[{l:'Annual Income',v:fmt(v.nestEgg*v.swr/100,2,'$')},{l:'Monthly Income',v:fmt(v.nestEgg*v.swr/100/12,2,'$')}]);
+
+reg('retirement-calc','Retirement Calculator',[{i:'current',l:'Current Savings',s:'$',v:'50000'},{i:'monthly',l:'Monthly Contribution',s:'$',v:'1000'},{i:'years',l:'Years to Save',v:'25'},{i:'return',l:'Annual Return',s:'%',v:'7'},{i:'withdraw',l:'Monthly Withdrawal',s:'$',v:'4000'},{i:'retireYrs',l:'Years in Retirement',v:'30'}],(v)=>{
+  let r1=v.return/100/12,n1=v.years*12,fv=v.current*Math.pow(1+r1,n1);if(r1>0)fv+=v.monthly*((Math.pow(1+r1,n1)-1)/r1);
+  let r2=v.return/100/12*0.6,n2=v.retireYrs*12,sus=r2>0?fv*r2/(1-Math.pow(1+r2,-n2)):fv/n2;
+  return[{l:'Savings at Retirement',v:fmt(fv,0,'$')},{l:'Sustainable Monthly',v:fmt(sus,2,'$')},{l:'Status',v:sus>=v.withdraw?'✅ Lasts':'⚠️ Will deplete'}];
+});
+
+reg('annuity','Annuity Calculator',[{i:'payment',l:'Payment Amount',s:'$',v:'1000'},{i:'rate',l:'Annual Rate',s:'%',v:'5'},{i:'periods',l:'Number of Periods',v:'240'},{i:'type',l:'Type',t:'select',o:[{v:'0',l:'Ordinary (end)',s:true},{v:'1',l:'Annuity Due (start)'}]},{i:'calc',l:'Calculate',t:'select',o:[{v:'pv',l:'Present Value',s:true},{v:'fv',l:'Future Value'}]}],(v)=>{
+  let pmt=v.payment,r=v.rate/100/12,n=v.periods,due=v.type==='1',isPv=v.calc==='pv',result;
+  if(isPv)result=due?pmt*(1-Math.pow(1+r,-n))/r*(1+r):pmt*(1-Math.pow(1+r,-n))/r;
+  else result=due?pmt*((Math.pow(1+r,n)-1)/r)*(1+r):pmt*((Math.pow(1+r,n)-1)/r);
+  return[{l:isPv?'Present Value':'Future Value',v:fmt(result,2,'$')},{l:'Total Payments',v:fmt(pmt*n,2,'$')}];
+});
+
+reg('stock-return','Stock Return & Capital Gain',[{i:'buy',l:'Purchase Price',s:'$',v:'100'},{i:'sell',l:'Sale Price',s:'$',v:'150'},{i:'shares',l:'Number of Shares',v:'100'},{i:'div',l:'Dividends Received',s:'$',v:'200'},{i:'commBuy',l:'Buy Commission',s:'$',v:'9.99'},{i:'commSell',l:'Sell Commission',s:'$',v:'9.99'},{i:'years',l:'Holding Period (yrs)',v:'2'}],(v)=>{
+  let cost=v.buy*v.shares+v.commBuy,proceeds=v.sell*v.shares-v.commSell,gain=proceeds-cost,total=gain+v.div,roi=total/cost*100,ann=(Math.pow((cost+total)/cost,1/v.years)-1)*100;
+  return[{l:'Cost Basis',v:fmt(cost,2,'$')},{l:'Total Return',v:fmt(total,2,'$')},{l:'Total ROI',v:fmtPct(roi,2)},{l:'Annualized ROI',v:fmtPct(ann,2)}];
+});
+
+reg('stock-constant','Gordon Growth Model',[{i:'div',l:'Expected Dividend (D₁)',s:'$',v:'2.50'},{i:'r',l:'Required Return',s:'%',v:'10'},{i:'g',l:'Growth Rate',s:'%',v:'4'}],(v)=>[{l:'Intrinsic Value',v:fmt(v.div/((v.r-v.g)/100),2,'$')},{l:'Dividend Yield',v:fmtPct(v.div/(v.div/((v.r-v.g)/100))*100,2)}]);
+
+reg('stock-nonconstant','Non-constant Growth Stock',[{i:'div0',l:'Current Dividend (D₀)',s:'$',v:'2.00'},{i:'g1',l:'High Growth Rate',s:'%',v:'15'},{i:'highYears',l:'High Growth Years',v:'3'},{i:'g2',l:'Stable Growth Rate',s:'%',v:'4'},{i:'r',l:'Required Return',s:'%',v:'10'}],(v)=>{
+  let divs=[],d=v.div0;for(let i=0;i<v.highYears;i++){d*=(1+v.g1/100);divs.push(d);}
+  let tv=divs[divs.length-1]*(1+v.g2/100)/((v.r-v.g2)/100),pv_=0;divs.forEach((dd,i)=>pv_+=dd/Math.pow(1+v.r/100,i+1));pv_+=tv/Math.pow(1+v.r/100,v.highYears);
+  return[{l:'Intrinsic Value',v:fmt(pv_,2,'$')},{l:'Terminal Value',v:fmt(tv,2,'$')}];
+});
+
+reg('capm','CAPM Calculator',[{i:'rf',l:'Risk-Free Rate',s:'%',v:'4.5'},{i:'rm',l:'Market Return',s:'%',v:'10'},{i:'beta',l:'Beta (β)',v:'1.2'}],(v)=>{let er=v.rf+v.beta*(v.rm-v.rf);return[{l:'Expected Return',v:fmtPct(er,2)},{l:'Market Risk Premium',v:fmtPct(v.rm-v.rf,2)}];});
+
+reg('expected-return','Expected Return',[{i:'bullRet',l:'Bull Return',s:'%',v:'25'},{i:'bullProb',l:'Bull Probability',s:'%',v:'30'},{i:'baseRet',l:'Base Return',s:'%',v:'10'},{i:'baseProb',l:'Base Probability',s:'%',v:'50'},{i:'bearRet',l:'Bear Return',s:'%',v:'-15'},{i:'bearProb',l:'Bear Probability',s:'%',v:'20'}],(v)=>[{l:'Expected Return',v:fmtPct(v.bullRet*v.bullProb/100+v.baseRet*v.baseProb/100+v.bearRet*v.bearProb/100,2)}]);
+
+reg('holding-period','Holding Period Return',[{i:'begin',l:'Beginning Value',s:'$',v:'10000'},{i:'end',l:'Ending Value',s:'$',v:'12500'},{i:'income',l:'Income Received',s:'$',v:'500'}],(v)=>[{l:'HPR',v:fmtPct((v.end-v.begin+v.income)/v.begin*100,2)},{l:'Total Return',v:fmt(v.end-v.begin+v.income,2,'$')}]);
+
+reg('wacc','WACC Calculator',[{i:'equity',l:'Market Value Equity',s:'$',v:'50000000'},{i:'debt',l:'Market Value Debt',s:'$',v:'20000000'},{i:'costEquity',l:'Cost of Equity',s:'%',v:'12'},{i:'costDebt',l:'Cost of Debt',s:'%',v:'6'},{i:'taxRate',l:'Tax Rate',s:'%',v:'25'}],(v)=>{
+  let tot=v.equity+v.debt,wacc=(v.equity/tot)*(v.costEquity/100)+(v.debt/tot)*(v.costDebt/100)*(1-v.taxRate/100);
+  return[{l:'WACC',v:fmtPct(wacc*100,2)},{l:'After-tax Cost of Debt',v:fmtPct(v.costDebt*(1-v.taxRate/100),2)}];
+});
+
+// Black-Scholes (custom — complex formula)
+CALCULATORS['black-scholes'] = {
+  render(ct){ct.innerHTML=`<div class="input-card"><div class="input-card-title">🎯 Black-Scholes Option Pricing</div><div class="input-grid"><div class="input-group"><label>Stock Price (S)</label><div class="input-suffix"><input type="number" id="bs-s" value="100" step="any"><span class="suffix">$</span></div></div><div class="input-group"><label>Strike Price (K)</label><div class="input-suffix"><input type="number" id="bs-k" value="105" step="any"><span class="suffix">$</span></div></div><div class="input-group"><label>Time to Expiry (yrs)</label><input type="number" id="bs-t" value="0.5" step="any"></div><div class="input-group"><label>Risk-Free Rate</label><div class="input-suffix"><input type="number" id="bs-r" value="5" step="any"><span class="suffix">%</span></div></div><div class="input-group"><label>Volatility (σ)</label><div class="input-suffix"><input type="number" id="bs-v" value="30" step="any"><span class="suffix">%</span></div></div></div><div class="btn-row"><button class="btn btn-primary" id="bs-calc">Calculate</button></div></div><div id="bs-results"></div>`;
+  $('#bs-calc').onclick=()=>{let S=pv($('#bs-s').value),K=pv($('#bs-k').value),T=pv($('#bs-t').value),r=pv($('#bs-r').value)/100,v=pv($('#bs-v').value)/100;function nc(x){let a1=0.254829592,a2=-0.284496736,a3=1.421413741,a4=-1.453152027,a5=1.061405429,p=0.3275911,sign=x<0?-1:1,xa=Math.abs(x)/Math.sqrt(2),t=1/(1+p*xa),y=1-(((((a5*t+a4)*t)+a3)*t+a2)*t+a1)*t*Math.exp(-xa*xa);return 0.5*(1+sign*y);}let d1=(Math.log(S/K)+(r+v*v/2)*T)/(v*Math.sqrt(T)),d2=d1-v*Math.sqrt(T),call=S*nc(d1)-K*Math.exp(-r*T)*nc(d2),put=K*Math.exp(-r*T)*nc(-d2)-S*nc(-d1);$('#bs-results').innerHTML=`<div class="results-panel"><h3>Option Prices</h3><div class="result-grid"><div class="result-item"><div class="label">Call Price</div><div class="value">${fmt(call,4,'$')}</div></div><div class="result-item"><div class="label">Put Price</div><div class="value">${fmt(put,4,'$')}</div></div></div></div>`;};}
+};
+
+reg('pivot-points','Pivot Points',[{i:'h',l:'Previous High',v:'155.50'},{i:'l',l:'Previous Low',v:'150.20'},{i:'c',l:'Previous Close',v:'153.80'}],(v)=>{
+  let P=(v.h+v.l+v.c)/3,R1=2*P-v.l,R2=P+(v.h-v.l),R3=v.h+2*(P-v.l),S1=2*P-v.h,S2=P-(v.h-v.l),S3=v.l-2*(v.h-P);
+  return[{l:'Pivot',v:fmt(P,2)},{l:'R1 / S1',v:`${fmt(R1,2)} / ${fmt(S1,2)}`},{l:'R2 / S2',v:`${fmt(R2,2)} / ${fmt(S2,2)}`},{l:'R3 / S3',v:`${fmt(R3,2)} / ${fmt(S3,2)}`}];
+});
+
+reg('fibonacci','Fibonacci Levels',[{i:'low',l:'Swing Low',v:'100'},{i:'high',l:'Swing High',v:'200'}],(v)=>{
+  let diff=v.high-v.low,up=v.high>v.low,fibs=[0,0.236,0.382,0.5,0.618,0.786,1,1.272,1.618],names=['0%','23.6%','38.2%','50%','61.8%','78.6%','100%','127.2%','161.8%'],rows='';
+  fibs.forEach((f,i)=>{let lvl=up?v.high-f*diff:v.low+f*diff;rows+=`<tr${[0,3,5,6].includes(i)?' style="font-weight:700"':''}><td>${names[i]}</td><td>${fmt(lvl,2)}</td></tr>`;});
+  return [{l:'Key Levels',v:'See table',s:'50% & 61.8% are most watched'}];
+});
+
+reg('dividend-tax','Dividend Tax',[{i:'dividend',l:'Annual Dividends',s:'$',v:'5000'},{i:'qualified',l:'Qualified %',s:'%',v:'80'},{i:'ordinaryRate',l:'Ordinary Tax Rate',s:'%',v:'32'},{i:'ltcgRate',l:'LTCG Rate',s:'%',v:'15'}],(v)=>{
+  let q=v.dividend*v.qualified/100,o=v.dividend-q,tq=q*v.ltcgRate/100,to_=o*v.ordinaryRate/100,tt=tq+to_;
+  return[{l:'After-Tax Income',v:fmt(v.dividend-tt,2,'$')},{l:'Total Tax',v:fmt(tt,2,'$')},{l:'Effective Rate',v:fmtPct(tt/v.dividend*100,1)}];
+});
+
+reg('commodities','Commodities & Futures',[{i:'entry',l:'Entry Price',v:'1950'},{i:'exit',l:'Exit Price',v:'2000'},{i:'tickSize',l:'Tick Size',v:'0.10'},{i:'tickValue',l:'Tick Value',s:'$',v:'10'},{i:'contracts',l:'Contracts',v:'1'}],(v)=>{
+  let ticks=(v.exit-v.entry)/v.tickSize,pnl=ticks*v.tickValue*v.contracts;
+  return[{l:'P&L',v:fmt(pnl,2,'$'),s:pnl>=0?'✅ Profit':'⚠️ Loss'},{l:'Ticks Moved',v:fmt(ticks,1)}];
+});
+
+CALCULATORS['credit-payoff'] = {
+  render(ct){ct.innerHTML=`<div class="input-card"><div class="input-card-title">💳 Credit Card Payoff</div><div class="input-grid"><div class="input-group"><label>Balance</label><div class="input-suffix"><input type="number" id="ccp-bal" value="5000" step="any"><span class="suffix">$</span></div></div><div class="input-group"><label>APR</label><div class="input-suffix"><input type="number" id="ccp-rate" value="22.99" step="any"><span class="suffix">%</span></div></div><div class="input-group"><label>Monthly Payment</label><div class="input-suffix"><input type="number" id="ccp-pmt" value="200" step="any"><span class="suffix">$</span></div></div></div><div class="btn-row"><button class="btn btn-primary" id="ccp-go">Calculate</button></div></div><div id="ccp-out"></div>`;
+  $('#ccp-go').onclick=()=>{let bal=pv($('#ccp-bal').value),apr=pv($('#ccp-rate').value)/100,pmt=pv($('#ccp-pmt').value),r=apr/12;if(pmt<=bal*r){$('#ccp-out').innerHTML=`<div class="results-panel"><h3>⚠️ Payment too low</h3><p style="color:var(--text-secondary);font-size:13px">Monthly interest (${fmt(bal*r,2,'$')}) exceeds your payment. You will never pay off this debt.</p></div>`;return;}let b=bal,mo=0,iTot=0;while(b>0&&mo<1200){mo++;let int=b*r;iTot+=int;let pr=pmt-int;if(pr>b)pr=b;b-=pr;}$('#ccp-out').innerHTML=`<div class="results-panel"><h3>Payoff Summary</h3><div class="result-grid"><div class="result-item"><div class="label">Months to Pay Off</div><div class="value">${mo}</div><div class="sub">${fmt(mo/12,1)} years</div></div><div class="result-item"><div class="label">Total Interest</div><div class="value">${fmt(iTot,2,'$')}</div></div></div></div>`;};}
+};
+
+CALCULATORS['credit-minimum'] = {
+  render(ct){ct.innerHTML=`<div class="input-card"><div class="input-card-title">⚠️ Minimum Payment Trap</div><div class="input-grid"><div class="input-group"><label>Balance</label><div class="input-suffix"><input type="number" id="ccm-bal" value="5000" step="any"><span class="suffix">$</span></div></div><div class="input-group"><label>APR</label><div class="input-suffix"><input type="number" id="ccm-rate" value="22.99" step="any"><span class="suffix">%</span></div></div><div class="input-group"><label>Min Payment %</label><div class="input-suffix"><input type="number" id="ccm-pct" value="3" step="any"><span class="suffix">%</span></div></div><div class="input-group"><label>Min Payment Floor</label><div class="input-suffix"><input type="number" id="ccm-floor" value="25" step="any"><span class="suffix">$</span></div></div></div><div class="btn-row"><button class="btn btn-primary" id="ccm-go">Calculate</button></div></div><div id="ccm-out"></div>`;
+  $('#ccm-go').onclick=()=>{let bal=pv($('#ccm-bal').value),apr=pv($('#ccm-rate').value)/100,minPct=pv($('#ccm-pct').value)/100,floor=pv($('#ccm-floor').value),r=apr/12,b=bal,mo=0,iTot=0;while(b>0&&mo<1200){mo++;let int=b*r;iTot+=int;let mp=Math.max(b*minPct,Math.min(floor,b)),pr=mp-int;b-=Math.max(0,pr);}let b2=bal,fixedPmt=200,mo2=0,i2=0;if(fixedPmt>bal*r){while(b2>0&&mo2<1200){mo2++;let int=b2*r;i2+=int;let pr=fixedPmt-int;if(pr>b2)pr=b2;b2-=pr;}}else{mo2=9999;}$('#ccm-out').innerHTML=`<div class="results-panel"><h3>The True Cost of Minimum Payments</h3><div class="result-grid"><div class="result-item"><div class="label">Min Payment: Time</div><div class="value">${fmt(mo/12,1)} yrs</div></div><div class="result-item"><div class="label">Min Payment: Interest</div><div class="value">${fmt(iTot,2,'$')}</div></div><div class="result-item"><div class="label">\$200 Fixed: Time</div><div class="value">${mo2<9999?fmt(mo2/12,1)+' yrs':'Never'}</div></div><div class="result-item"><div class="label">Savings with \$200</div><div class="value">${fmt(iTot-i2,2,'$')}</div></div></div></div>`;};}
+};
+
+reg('auto-loan','Auto Loan',[{i:'price',l:'Vehicle Price',s:'$',v:'35000'},{i:'down',l:'Down Payment',s:'$',v:'7000'},{i:'trade',l:'Trade-in Value',s:'$',v:'0'},{i:'rate',l:'Rate',s:'%',v:'5.5'},{i:'term',l:'Term (months)',v:'60'},{i:'tax',l:'Sales Tax',s:'%',v:'6'}],(v)=>{
+  let taxed=v.price*(1+v.tax/100),loan=taxed-v.down-v.trade,r=v.rate/100/12,n=v.term,pmt=loan*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+  return[{l:'Loan Amount',v:fmt(loan,2,'$')},{l:'Monthly Payment',v:fmt(pmt,2,'$')},{l:'Total Interest',v:fmt(pmt*n-loan,2,'$')}];
+});
+
+reg('auto-lease','Auto Lease',[{i:'price',l:'Vehicle Price',s:'$',v:'40000'},{i:'residual',l:'Residual %',s:'%',v:'55'},{i:'mf',l:'Money Factor',v:'0.0025'},{i:'term',l:'Term (months)',v:'36'},{i:'down',l:'Down Payment',s:'$',v:'3000'}],(v)=>{
+  let rv=v.price*v.residual/100,dep=(v.price-rv)/v.term,fin=(v.price+rv)*v.mf,mo=dep+fin;
+  return[{l:'Monthly Payment',v:fmt(mo,2,'$')},{l:'Total Lease Cost',v:fmt(mo*v.term+v.down,2,'$')},{l:'Residual Value',v:fmt(rv,2,'$')}];
+});
+
+// --- Misc calculators ---
+reg('tip','Tip Calculator',[{i:'bill',l:'Bill Amount',s:'$',v:'85.50'},{i:'pct',l:'Tip %',s:'%',v:'18'},{i:'split',l:'Split Between',v:'1'}],(v)=>{
+  let tip=v.bill*v.pct/100,total=v.bill+tip,s=Math.max(1,v.split||1);
+  return[{l:'Tip Amount',v:fmt(tip,2,'$')},{l:'Total Bill',v:fmt(total,2,'$')},{l:'Per Person',v:fmt(total/s,2,'$')}];
+});
+
+reg('discount-tax','Discount & Tax',[{i:'price',l:'Original Price',s:'$',v:'100'},{i:'discount',l:'Discount %',s:'%',v:'20'},{i:'tax',l:'Sales Tax %',s:'%',v:'8'}],(v)=>{
+  let disc=v.price*(1-v.discount/100),final=disc*(1+v.tax/100);
+  return[{l:'Final Price',v:fmt(final,2,'$')},{l:'You Save',v:fmt(v.price-final,2,'$'),s:fmtPct((v.price-final)/v.price*100,1)+' off'}];
+});
+
+// Percentage (custom — tabs)
+CALCULATORS.percentage = {
+  render(ct){ct.innerHTML=`<div class="input-card"><div class="tab-row"><button class="tab-pill active" data-t="pct-of">% of What?</button><button class="tab-pill" data-t="pct-change">% Change</button><button class="tab-pill" data-t="pct-is">Is What %?</button></div><div id="pct-tab-inner"></div></div><div id="pct-out"></div>`;this._renderTab('pct-of',ct);ct.querySelectorAll('.tab-pill').forEach(b=>b.onclick=()=>{ct.querySelectorAll('.tab-pill').forEach(x=>x.classList.remove('active'));b.classList.add('active');this._renderTab(b.dataset.t,ct);$('#pct-out').innerHTML='';});},
+  _renderTab(t,ct){let tc=$('#pct-tab-inner');if(t==='pct-of')tc.innerHTML=`<div class="input-grid"><div class="input-group"><label>Percentage</label><div class="input-suffix"><input type="number" id="pct-a" placeholder="15" step="any"><span class="suffix">%</span></div></div><div class="input-group"><label>Of Number</label><input type="number" id="pct-b" placeholder="200" step="any"></div></div><div class="btn-row"><button class="btn btn-primary" id="pct-go">Calculate</button></div>`;else if(t==='pct-change')tc.innerHTML=`<div class="input-grid"><div class="input-group"><label>Old Value</label><input type="number" id="pct-old" placeholder="100" step="any"></div><div class="input-group"><label>New Value</label><input type="number" id="pct-new" placeholder="125" step="any"></div></div><div class="btn-row"><button class="btn btn-primary" id="pct-go">Calculate</button></div>`;else tc.innerHTML=`<div class="input-grid"><div class="input-group"><label>Part Value</label><input type="number" id="pct-part" placeholder="30" step="any"></div><div class="input-group"><label>Total Value</label><input type="number" id="pct-total" placeholder="200" step="any"></div></div><div class="btn-row"><button class="btn btn-primary" id="pct-go">Calculate</button></div>`;$('#pct-go').onclick=()=>{let r;if(t==='pct-of'){let p_=pv($('#pct-a').value),n_=pv($('#pct-b').value);r=[{l:`${fmtPct(p_)} of ${fmt(n_)}`,v:fmt(n_*p_/100,4)}];}else if(t==='pct-change'){let o_=pv($('#pct-old').value),nw=pv($('#pct-new').value),ch=((nw-o_)/Math.abs(o_))*100;r=[{l:'Change',v:fmtPct(ch,2),s:ch>=0?'Increase':'Decrease'}];}else{let pt=pv($('#pct-part').value),tot_=pv($('#pct-total').value);r=[{l:`${fmt(pt)} is what % of ${fmt(tot_)}?`,v:fmtPct(pt/tot_*100,2)}];}let rh='<div class="results-panel"><h3>Result</h3><div class="result-grid">';r.forEach(x=>rh+=`<div class="result-item"><div class="label">${x.l}</div><div class="value">${x.v}</div>${x.s?`<div class="sub">${x.s}</div>`:''}</div>`);rh+='</div></div>';$('#pct-out').innerHTML=rh;};}
+};
+
+// Date Calculator (custom)
+CALCULATORS['date-calc'] = {
+  render(ct){ct.innerHTML=`<div class="input-card"><div class="tab-row"><button class="tab-pill active" data-t="diff">Date Difference</button><button class="tab-pill" data-t="add">Add / Subtract</button></div><div id="date-tab-inner"></div></div><div id="date-out"></div>`;this._render('diff',ct);ct.querySelectorAll('.tab-pill').forEach(b=>b.onclick=()=>{ct.querySelectorAll('.tab-pill').forEach(x=>x.classList.remove('active'));b.classList.add('active');this._render(b.dataset.t,ct);$('#date-out').innerHTML='';});},
+  _render(t,ct){let tc=$('#date-tab-inner'),today=new Date().toISOString().split('T')[0],later=new Date(Date.now()+30*86400000).toISOString().split('T')[0];if(t==='diff')tc.innerHTML=`<div class="input-grid"><div class="input-group"><label>Start Date</label><input type="date" id="dd-start" value="${today}"></div><div class="input-group"><label>End Date</label><input type="date" id="dd-end" value="${later}"></div></div><div class="btn-row"><button class="btn btn-primary" id="dd-go">Calculate</button></div>`;else tc.innerHTML=`<div class="input-grid"><div class="input-group"><label>Start Date</label><input type="date" id="da-start" value="${today}"></div><div class="input-group"><label>Operation</label><select id="da-op"><option value="add">Add</option><option value="sub">Subtract</option></select></div><div class="input-group"><label>Number</label><input type="number" id="da-num" value="90" step="1"></div><div class="input-group"><label>Unit</label><select id="da-unit"><option value="days">Days</option><option value="weeks">Weeks</option><option value="months">Months</option><option value="years">Years</option></select></div></div><div class="btn-row"><button class="btn btn-primary" id="da-go">Calculate</button></div>`;let btn=t==='diff'?$('#dd-go'):$('#da-go');if(btn)btn.onclick=()=>{let r;if(t==='diff'){let d1=new Date($('#dd-start').value),d2=new Date($('#dd-end').value),days=Math.round((d2-d1)/86400000);r=[{l:'Days',v:days},{l:'Weeks',v:fmt(days/7,1)},{l:'Months',v:(d2.getFullYear()-d1.getFullYear())*12+(d2.getMonth()-d1.getMonth())}];}else{let d=new Date($('#da-start').value),num=+$('#da-num').value,unit=$('#da-unit').value,op=$('#da-op').value,sign=op==='add'?1:-1,d2=new Date(d);if(unit==='days')d2.setDate(d2.getDate()+sign*num);else if(unit==='weeks')d2.setDate(d2.getDate()+sign*num*7);else if(unit==='months')d2.setMonth(d2.getMonth()+sign*num);else d2.setFullYear(d2.getFullYear()+sign*num);r=[{l:'Result',v:d2.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}];}let rh='<div class="results-panel"><h3>Result</h3><div class="result-grid">';r.forEach(x=>rh+=`<div class="result-item"><div class="label">${x.l}</div><div class="value">${x.v}</div></div>`);rh+='</div></div>';$('#date-out').innerHTML=rh;};}
+};
+
+// Unit Converter (custom)
+CALCULATORS['unit-conversion'] = {
+  conv:{length:{name:'Length',units:{m:1,km:1000,cm:0.01,mm:0.001,mi:1609.34,yd:0.9144,ft:0.3048,in:0.0254}},weight:{name:'Weight',units:{kg:1,g:0.001,mg:1e-6,lb:0.453592,oz:0.0283495}},volume:{name:'Volume',units:{l:1,ml:0.001,gal:3.78541,qt:0.946353,cup:0.236588,floz:0.0295735}},temp:{name:'Temperature',special:true},area:{name:'Area',units:{sqm:1,sqkm:1e6,sqft:0.092903,acre:4046.86,ha:10000}},speed:{name:'Speed',units:{ms:1,kmh:0.277778,mph:0.44704,knot:0.514444}}},
+  render(ct){let cats=Object.entries(this.conv).map(([k,v])=>`<option value="${k}">${v.name}</option>`).join('');ct.innerHTML=`<div class="input-card"><div class="input-card-title">📏 Unit Converter</div><div class="input-grid"><div class="input-group"><label>Category</label><select id="uc-type">${cats}</select></div><div class="input-group"><label>Value</label><input type="number" id="uc-val" value="1" step="any"></div><div class="input-group"><label>From</label><select id="uc-from"></select></div><div class="input-group"><label>To</label><select id="uc-to"></select></div></div><div class="btn-row"><button class="btn btn-primary" id="uc-go">Convert</button></div></div><div id="uc-out"></div>`;let self=this;function upd(){let type=$('#uc-type').value,conv=self.conv[type],f=$('#uc-from'),t=$('#uc-to');f.innerHTML='';t.innerHTML='';if(conv.special){['Celsius','Fahrenheit','Kelvin'].forEach((u,i)=>{f.innerHTML+=`<option value="${i}">${u}</option>`;t.innerHTML+=`<option value="${i}">${u}</option>`;});}else{Object.keys(conv.units).forEach(u=>{f.innerHTML+=`<option value="${u}">${u}</option>`;t.innerHTML+=`<option value="${u}">${u}</option>`;});}t.selectedIndex=1;}upd();$('#uc-type').onchange=upd;$('#uc-go').onclick=()=>{let type=$('#uc-type').value,conv=self.conv[type],val=pv($('#uc-val').value),from=$('#uc-from').value,to=$('#uc-to').value,result;if(conv.special){let c;if(from==='0')c=val;else if(from==='1')c=(val-32)*5/9;else c=val-273.15;if(to==='0')result=c;else if(to==='1')result=c*9/5+32;else result=c+273.15;}else result=val*conv.units[from]/conv.units[to];$('#uc-out').innerHTML=`<div class="results-panel"><h3>Conversion</h3><div class="result-grid"><div class="result-item"><div class="label">Result</div><div class="value">${fmt(result,6)} ${to}</div></div></div></div>`;};}
+};
+
+reg('inflation','US Inflation',[{i:'amt',l:'Amount',s:'$',v:'10000'},{i:'rate',l:'Annual Inflation',s:'%',v:'3'},{i:'years',l:'Years',v:'20'}],(v)=>[{l:`Future Cost`,v:fmt(v.amt*Math.pow(1+v.rate/100,v.years),2,'$'),s:`In ${v.years} yrs`},{l:'Past Equivalent',v:fmt(v.amt/Math.pow(1+v.rate/100,v.years),2,'$'),s:`${v.years} yrs ago`}]);
+
+reg('tbill','Treasury Bill',[{i:'face',l:'Face Value',s:'$',v:'10000'},{i:'days',l:'Days to Maturity',v:'91'},{i:'discount',l:'Discount Yield',s:'%',v:'5.0'}],(v)=>{
+  let disc=v.face*(v.discount/100)*(v.days/360),price=v.face-disc,invY=((v.face-price)/price)*(365/v.days)*100;
+  return[{l:'Price',v:fmt(price,2,'$')},{l:'Investment Yield',v:fmtPct(invY,3)}];
+});
+
+reg('margin-markup','Margin & Markup',[{i:'cost',l:'Cost',s:'$',v:'80'},{i:'sell',l:'Selling Price',s:'$',v:'120'}],(v)=>{
+  let profit=v.sell-v.cost,margin=profit/v.sell*100,markup=profit/v.cost*100;
+  return[{l:'Profit',v:fmt(profit,2,'$')},{l:'Margin',v:fmtPct(margin,2),s:'% of selling price'},{l:'Markup',v:fmtPct(markup,2),s:'% of cost'}];
+});
+
+// Business Forecast (custom — multi-row)
+CALCULATORS['business-forecast'] = {
+  render(ct){ct.innerHTML=`<div class="input-card"><div class="input-card-title">📈 Business Forecast</div><div class="input-grid"><div class="input-group"><label>Current Revenue</label><div class="input-suffix"><input type="number" id="bf-rev" value="500000" step="any"><span class="suffix">$</span></div></div><div class="input-group"><label>Growth Rate</label><div class="input-suffix"><input type="number" id="bf-g" value="15" step="any"><span class="suffix">%</span></div></div><div class="input-group"><label>Years</label><input type="number" id="bf-y" value="5" min="1" max="20" step="1"></div></div><div class="btn-row"><button class="btn btn-primary" id="bf-go">Calculate</button></div></div><div id="bf-out"></div>`;
+  $('#bf-go').onclick=()=>{let rev=pv($('#bf-rev').value),g=pv($('#bf-g').value)/100,y=+$('#bf-y').value,r=rev,items='';for(let i=1;i<=y;i++){r*=(1+g);items+=`<div class="result-item"><div class="label">Year ${i}</div><div class="value">${fmt(r,0,'$')}</div><div class="sub">${fmt(r-rev,0,'$')} growth</div></div>`;}$('#bf-out').innerHTML=`<div class="results-panel"><h3>Revenue Forecast</h3><div class="result-grid">${items}</div></div>`;};}
+};
+
+reg('fuel','Fuel Cost',[{i:'distance',l:'Distance',v:'300'},{i:'unit',l:'Unit',t:'select',o:[{v:'miles',l:'Miles',s:true},{v:'km',l:'Kilometers'}]},{i:'efficiency',l:'Efficiency',v:'30'},{i:'effUnit',l:'Efficiency Unit',t:'select',o:[{v:'mpg',l:'MPG',s:true},{v:'lp100',l:'L/100km'}]},{i:'fuelPrice',l:'Fuel Price',s:'$',v:'3.50'},{i:'people',l:'Split Between',v:'1'}],(v)=>{
+  let fuel;if(v.effUnit==='mpg')fuel=v.unit==='miles'?v.distance/v.efficiency:v.distance/1.609/v.efficiency;else fuel=v.unit==='km'?v.distance/100*v.efficiency:v.distance*1.609/100*v.efficiency;
+  return[{l:'Fuel Needed',v:fmt(fuel,1)+' gal'},{l:'Total Cost',v:fmt(fuel*v.fuelPrice,2,'$')},{l:'Per Person',v:fmt(fuel*v.fuelPrice/v.people,2,'$')}];
+});
+
+reg('hourly-salary','Hourly to Salary',[{i:'hourly',l:'Hourly Wage',s:'$',v:'25'},{i:'hours',l:'Hours/Week',v:'40'},{i:'weeks',l:'Weeks/Year',v:'52'}],(v)=>[{l:'Annual Salary',v:fmt(v.hourly*v.hours*v.weeks,2,'$')},{l:'Monthly Pay',v:fmt(v.hourly*v.hours*v.weeks/12,2,'$')},{l:'Weekly Pay',v:fmt(v.hourly*v.hours,2,'$')}]);
+
+reg('salary-increase','Salary Increase',[{i:'salary',l:'Current Salary',s:'$',v:'60000'},{i:'increase',l:'Annual Increase',s:'%',v:'3'},{i:'years',l:'Years',v:'10'}],(v)=>[{l:`Salary in ${v.years} yrs`,v:fmt(v.salary*Math.pow(1+v.increase/100,v.years),2,'$')},{l:'Increase',v:fmt(v.salary*Math.pow(1+v.increase/100,v.years)-v.salary,2,'$')}]);
+
+reg('paycheck-tax','US Paycheck Tax',[{i:'salary',l:'Annual Gross Salary',s:'$',v:'75000'},{i:'withhold',l:'Federal Withholding',s:'%',v:'15'},{i:'stateTax',l:'State Tax Rate',s:'%',v:'5'}],(v)=>{
+  let ss=v.salary*0.062,med=v.salary*0.0145,fed=v.salary*v.withhold/100,state=v.salary*v.stateTax/100,tot=ss+med+fed+state,net=v.salary-tot;
+  return[{l:'Take-Home (Annual)',v:fmt(net,2,'$')},{l:'Take-Home (Monthly)',v:fmt(net/12,2,'$')},{l:'Effective Tax Rate',v:fmtPct(tot/v.salary*100,1)}];
+});
+
+reg('net-distribution','Net Distribution',[{i:'amount',l:'Distribution Amount',s:'$',v:'50000'},{i:'fedRate',l:'Federal Tax Rate',s:'%',v:'22'},{i:'stateRate',l:'State Tax Rate',s:'%',v:'5'},{i:'penalty',l:'Early Penalty',s:'%',v:'0'}],(v)=>{
+  let fed=v.amount*v.fedRate/100,state=v.amount*v.stateRate/100,pen=v.amount*v.penalty/100,net=v.amount-fed-state-pen;
+  return[{l:'Net Amount',v:fmt(net,2,'$')},{l:'Total Tax',v:fmt(fed+state+pen,2,'$')}];
+});
+
+reg('effective-rate','Effective Rate',[{i:'nom',l:'Nominal Rate',s:'%',v:'12'},{i:'comp',l:'Compounding',t:'select',o:[{v:'12',l:'Monthly',s:true},{v:'4',l:'Quarterly'},{v:'2',l:'Semi-annual'},{v:'365',l:'Daily'},{v:'0',l:'Continuous'}]}],(v)=>{
+  let c=+v.comp,ear=c===0?Math.exp(v.nom/100)-1:Math.pow(1+v.nom/100/c,c)-1;
+  return[{l:'Effective Annual Rate',v:fmtPct(ear*100,3)},{l:'Difference',v:fmtPct((ear-v.nom/100)*100,3)}];
+});
+
+reg('financial-ratios','Financial Ratios',[{i:'currAssets',l:'Current Assets',s:'$',v:'500000'},{i:'currLiab',l:'Current Liabilities',s:'$',v:'250000'},{i:'totAssets',l:'Total Assets',s:'$',v:'2000000'},{i:'totLiab',l:'Total Liabilities',s:'$',v:'800000'},{i:'equity',l:'Shareholder Equity',s:'$',v:'1200000'},{i:'revenue',l:'Revenue',s:'$',v:'3000000'},{i:'netIncome',l:'Net Income',s:'$',v:'300000'}],(v)=>[
+  {l:'Current Ratio',v:fmt(v.currAssets/v.currLiab,2)},{l:'Debt-to-Equity',v:fmt(v.totLiab/v.equity,2)},{l:'ROE',v:fmtPct(v.netIncome/v.equity*100,2)},{l:'ROA',v:fmtPct(v.netIncome/v.totAssets*100,2)},{l:'Profit Margin',v:fmtPct(v.netIncome/v.revenue*100,2)},{l:'Asset Turnover',v:fmt(v.revenue/v.totAssets,2)}
+]);
+
+// =========================================================================
+// INIT
+// =========================================================================
+renderHome();
+</script>
+</body>
+</html>
